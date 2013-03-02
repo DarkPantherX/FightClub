@@ -120,6 +120,7 @@ public class FightClub extends JPanel implements Runnable{
 			
 			
 			repaint();
+			upload();
 			try {
 				Thread.sleep((long) 5.0);
 			} catch (InterruptedException e) {
@@ -129,4 +130,11 @@ public class FightClub extends JPanel implements Runnable{
 		}
 	}
 
+	public static void upload(){
+		
+		System.out.println("asdf");
+	}
+	
+	
+	
 }
