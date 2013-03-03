@@ -142,6 +142,6 @@ public class FightClub extends JPanel implements Runnable{
 
 
 	
-	
+	//asdf
 
 }
