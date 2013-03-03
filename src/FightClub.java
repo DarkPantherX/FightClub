@@ -3,6 +3,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -25,6 +27,7 @@ public class FightClub extends JPanel implements Runnable{
 	private InputHandler inHandler;
 
 	public static final int NUMKEYS=5;
+	public static List<Bullet> bullets= new ArrayList<Bullet>();
 	
 
 
@@ -53,7 +56,9 @@ public class FightClub extends JPanel implements Runnable{
 		Graphics2D g2 = (Graphics2D)g;
 
 		g2.clearRect(0, 0, 500, 500);
-		player.draw(g2);
+		bullet.render(g2);
+		player.render(g2);
+		
 	}
 	
 	
@@ -112,13 +117,18 @@ public class FightClub extends JPanel implements Runnable{
 				
 			}
 			
+			
+			if(inHandler.getKeys()[KeyEvent.VK_SPACE]){
+				a[4]=true;
+				
+			}
+			
 			player.update(a,b);
 			
 			for(int i=0;i<4;i++){
 				a[i]=false;
 			}
-			
-			
+			System.out.println(player.getX_Point()+" "+ player.getY_Point());
 			repaint();
 
 			try {

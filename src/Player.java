@@ -3,9 +3,10 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 
-public class Player extends Entity{
+public class Player extends Entity implements Renderer{
 
-
+	private Bullet bullet;
+	
 	
 	public Player(int x_Point,int  y_Point,int width,int height,Image img,int life){
 		this.setX_Point(x_Point);
@@ -18,7 +19,7 @@ public class Player extends Entity{
 		
 	}
 
-	public void draw(Graphics2D g) {
+	public void render(Graphics2D g) {
 			
 
 		

@@ -20,7 +20,6 @@ public class InputHandler implements KeyListener {
 	//creates the KeyEvents and adds Keys to the boolean
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
-		System.out.println(e.getKeyCode());
 		if (code > 0 && code < keys.length) {
 			keys[code] = true;
 		}

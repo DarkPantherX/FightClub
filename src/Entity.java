@@ -3,105 +3,52 @@ import java.awt.Image;
 
 
 
-public class Entity {
+public class Entity extends GameComponents{
 
 	
-	private int x_Point;
-	private int y_Point;
-	private int width;
-	private int height;
+	
 	private Image img;
 	private int life;
 	private double grad;
-	
+	private Bullet bullet;
 	
 	
 	
 	
 	public void update(boolean a[],double b) {
+		
+		
 		if(a[0]){setY_Point(getY_Point()-1);}
 		if(a[1]){setY_Point(getY_Point()+1);}
 		if(a[2]){setX_Point(getX_Point()-1);}
 		if(a[3]){setX_Point(getX_Point()+1);}
-		grad=grad+b;
 		
+		
+		
+		grad=grad+b;
+		double i = ( getX_Point()+25-Math.cos( grad ) * 25);
+		double j=(getY_Point()+25-Math.sin( grad ) * 25 );
+		
+		double m = ( getX_Point()+25+Math.cos( grad ) * 25);
+		double n=(getY_Point()+25+Math.sin( grad ) * 25 );
+		
+		int dirX=(int)(i-m);
+		int dirY=(int)(j-n);
+		
+		if(a[4]){
+			bullet= new Bullet();
+			
+			
+		}
+		
+	System.out.println(i + " "+ j);	
+	System.out.println(m + " "+ n);	
+	System.out.println(dirX+" "+ dirY);
 	}
 	
 	
 	
-	/**
-	 * @return the x_Point
-	 */
-	public int getX_Point() {
-		return x_Point;
-	}
-
-
-
-	/**
-	 * @param x_Point the x_Point to set
-	 */
-	public void setX_Point(int x_Point) {
-		this.x_Point = x_Point;
-	}
-
-
-
-	/**
-	 * @return the y_Point
-	 */
-	public int getY_Point() {
-		return y_Point;
-	}
-
-
-
-	/**
-	 * @param y_Point the y_Point to set
-	 */
-	public void setY_Point(int y_Point) {
-		this.y_Point = y_Point;
-	}
-
-
-
-	/**
-	 * @return the width
-	 */
-	public int getWidth() {
-		return width;
-	}
-
-
-
-	/**
-	 * @param width the width to set
-	 */
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-
-
-	/**
-	 * @return the height
-	 */
-	public int getHeight() {
-		return height;
-	}
-
-
-
-	/**
-	 * @param height the height to set
-	 */
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
-
-
-
+	
 
 	/**
 	 * @return the color
