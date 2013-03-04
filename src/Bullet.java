@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 
@@ -45,6 +46,7 @@ public class Bullet extends GameComponents implements Renderer{
 
 
 	public void render(Graphics2D g) {
+		g.setColor(Color.white);
 		g.fillRect(getX_Point(),getY_Point(),getWidth(),getHeight());
 		
 	}
