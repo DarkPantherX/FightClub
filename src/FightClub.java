@@ -72,7 +72,6 @@ public class FightClub extends JPanel implements Runnable{
 		bul.render(g2);
 			}
 		}
-		System.out.println(System.currentTimeMillis());
 		player.render(g2);
 		
 	}
