@@ -36,14 +36,19 @@ public class Entity extends GameComponents{
 		int dirY=(int)(j-n);
 		
 		if(a[4]){
-			bullet= new Bullet();
-			
+			long time = System.currentTimeMillis();
+			if(FightClub.getLasttime()+2000<time){
+				FightClub.setLasttime(time);
+				bullet= new Bullet(20,20,dirX,dirY,(int)i+2,(int)j+2);
+				System.out.println("Works over here!" + bullet.getY_Point());
+				FightClub.getBullets().add(bullet);
+			}
 			
 		}
 		
-	System.out.println(i + " "+ j);	
-	System.out.println(m + " "+ n);	
-	System.out.println(dirX+" "+ dirY);
+//	System.out.println(i + " "+ j);	
+//	System.out.println(m + " "+ n);	
+//	System.out.println(dirX+" "+ dirY);
 	}
 	
 	
