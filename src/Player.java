@@ -5,7 +5,6 @@ import java.awt.geom.AffineTransform;
 
 public class Player extends Entity implements Renderer{
 
-	private Bullet bullet;
 	
 	
 	public Player(int x_Point,int  y_Point,int width,int height,Image img,int life){
