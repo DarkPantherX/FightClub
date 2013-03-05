@@ -25,7 +25,10 @@ public class FightClub extends JPanel implements Runnable{
 
 	private Player player;
 	private InputHandler inHandler;
-
+	private long oldTime=0;
+	private long lastTime=0;
+	private long timeBetweenFrames=0;
+	
 	public static final int NUMKEYS=5;
 	public static ArrayList<Bullet> bullets= new ArrayList<Bullet>();
 	public static double lasttime=0;
@@ -102,6 +105,17 @@ public class FightClub extends JPanel implements Runnable{
 
 	public void run() {
 		while (!paused) {
+			
+			long currentTime = System.nanoTime();
+			timeBetweenFrames =1000000000/( currentTime - lastTime);
+			System.out.println(timeBetweenFrames);
+			lastTime = currentTime;
+//			System.out.println(1000/timeBetweenFrames);
+
+
+			
+			
+			if(currentTime >(oldTime+2000000)){
 			boolean a[]= new boolean[NUMKEYS];
 			double b=0;
 			
@@ -142,11 +156,14 @@ public class FightClub extends JPanel implements Runnable{
 			
 			for(int i=0;i<NUMKEYS;i++){
 				a[i]=false;
+			
+				}	
+			oldTime=currentTime;
 			}
 			repaint();
 
 			try {
-				Thread.sleep((long) 5.0);
+				Thread.sleep((long) 1.0);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
