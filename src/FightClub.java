@@ -165,7 +165,7 @@ public class FightClub extends JPanel implements Runnable{
 			try {
 				Thread.sleep((long) 1.0);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				System.out.println("Coulden't start sleep:" +e);
 				e.printStackTrace();
 			}
 		}
