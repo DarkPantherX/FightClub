@@ -1,11 +1,13 @@
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 
 public class Player extends Entity implements Renderer{
 
-	
+	private AffineTransform rot = new AffineTransform();
+	private Rectangle rect;
 	
 	public Player(int x_Point,int  y_Point,int width,int height,Image img,int life){
 		this.setX_Point(x_Point);
@@ -19,7 +21,9 @@ public class Player extends Entity implements Renderer{
 	}
 
 	public void render(Graphics2D g) {
-			
+		
+        rot.setToRotation(getGrad(),getX_Point()+getWidth() / 2, getY_Point()+getHeight() / 2);  
+        setRect(new Rectangle(getX_Point(), getY_Point(), getWidth(), getHeight()));  
 
 		
 
@@ -34,6 +38,28 @@ public class Player extends Entity implements Renderer{
 		
 		
 
+	}
+
+	/**
+	 * @return the rect
+	 */
+	public Rectangle getRect() {
+		return rect;
+	}
+
+	/**
+	 * @param rect the rect to set
+	 */
+	public void setRect(Rectangle rect) {
+		this.rect = rect;
+	}
+
+	public AffineTransform getRot() {
+		return rot;
+	}
+
+	public void setRot(AffineTransform rot) {
+		this.rot = rot;
 	}
 
 
