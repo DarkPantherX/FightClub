@@ -25,7 +25,7 @@ public class Entity extends GameComponents{
 		
 		
 		
-		grad=grad+b;
+		grad=b;
 		double i = ( getX_Point()+25-Math.cos( grad ) * 25);
 		double j=(getY_Point()+25-Math.sin( grad ) * 25 );
 		
@@ -37,10 +37,10 @@ public class Entity extends GameComponents{
 		
 		if(a[4]){
 			long time = System.currentTimeMillis();
-			if(FightClub.getLasttime()+2000<time){
+			if(FightClub.getLasttime()+500<time){
 				FightClub.setLasttime(time);
-				bullet= new Bullet(20,20,dirX,dirY,(int)i+2,(int)j+2);
-				System.out.println("Works over here!" + bullet.getY_Point());
+				bullet= new Bullet(10,10,dirX,dirY,(int)i-5,(int)j-5,grad);
+				//System.out.println("Works over here!" + bullet.getY_Point());
 				FightClub.getBullets().add(bullet);
 			}
 			
