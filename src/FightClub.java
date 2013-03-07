@@ -201,6 +201,7 @@ public class FightClub extends JPanel implements Runnable{
 			if(enim.getRect().contains(bullet.getPoint())){
 				
 				enemies.remove(i);
+				bullets.remove(bullet);
 				
 				
 			}
@@ -213,11 +214,24 @@ public class FightClub extends JPanel implements Runnable{
 
 	private void spawnEnemies(){
 		Image imge1= new ImageIcon(getClass().getResource("img/enemy.png")).getImage();
-
+		int x=0;
+		int y=0;
+		double o=Math.random();
+		if(o<0.25){
+		x =(int) (Math.random()*500);
+		y =500;
+		}else if(o<0.5){
+			x =(int) (Math.random()*500);
+			y =0;	
+		}else if(o<0.75){
+			y =(int) (Math.random()*500);
+			x =500;	
+		}else if(o<1){
+			y =(int) (Math.random()*500);
+			x =0;	
+		}
 		
-		int x =(int) (Math.random()*500);
-		
-		Enemy enim = new Enemy(x,0,30,30,imge1,1);
+		Enemy enim = new Enemy(x,y,30,30,imge1,1);
 		enemies.add(enim);
 		
 		
