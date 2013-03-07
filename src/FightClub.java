@@ -22,7 +22,7 @@ public class FightClub extends JPanel implements Runnable{
 
 	private static boolean paused=false;
 	
-
+	
 	private Player player;
 	private InputHandler inHandler;
 	private long currentTime;
@@ -42,7 +42,6 @@ public class FightClub extends JPanel implements Runnable{
 	public static final int NUMKEYS=5;
 	public static ArrayList<Bullet> bullets= new ArrayList<Bullet>();
 	public static double lasttime=0;
-	
 
 
 	/**
@@ -80,7 +79,7 @@ public class FightClub extends JPanel implements Runnable{
 		if(bul.getX_Point()>500||bul.getX_Point()<0||bul.getY_Point()>500||bul.getY_Point()<0){
 			bullets.remove(w);
 		}else{
-			System.out.println("Works: "+w);
+//			System.out.println("Works: "+w);
 		bul.render(g2);
 			}
 		}
@@ -117,7 +116,7 @@ public class FightClub extends JPanel implements Runnable{
 			
 			currentTime = System.nanoTime();
 			timeBetweenFrames =1000000000/( currentTime - lastTime);
-			System.out.println(timeBetweenFrames);
+//			System.out.println(timeBetweenFrames);
 			lastTime = currentTime;
 //			System.out.println(1000/timeBetweenFrames);
 
@@ -151,6 +150,7 @@ public class FightClub extends JPanel implements Runnable{
 		for(int w=0; w<bullets.size();w++){
 			Bullet bul = (Bullet) bullets.get(w);
 			bul.update();
+			bulletHittest(bul);
 		}
 		
 		
@@ -161,6 +161,16 @@ public class FightClub extends JPanel implements Runnable{
 		oldTime=currentTime;
 		}
 	}
+
+	private void bulletHittest(Bullet bullet) {
+		if(player.getRot().createTransformedShape(player.getRect()).contains(bullet.getPoint())){
+			
+			System.out.println("Autsch, selfshot");
+		}
+		
+	}
+
+
 
 	public static ArrayList<Bullet> getBullets() {
 		return bullets;
