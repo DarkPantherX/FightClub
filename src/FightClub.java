@@ -25,9 +25,19 @@ public class FightClub extends JPanel implements Runnable{
 
 	private Player player;
 	private InputHandler inHandler;
+	private long currentTime;
 	private long oldTime=0;
 	private long lastTime=0;
 	private long timeBetweenFrames=0;
+	private boolean a[]= new boolean[NUMKEYS];
+
+
+
+
+
+	private double b=0;
+	
+	
 	
 	public static final int NUMKEYS=5;
 	public static ArrayList<Bullet> bullets= new ArrayList<Bullet>();
@@ -41,14 +51,14 @@ public class FightClub extends JPanel implements Runnable{
 	 */
 	
 	public FightClub(){
-		Image img= new ImageIcon(getClass().getResource("img/player.png")).getImage();
+		Image imgp1= new ImageIcon(getClass().getResource("img/player.png")).getImage();
 		
 		
 
 		
 		
 		bullets = new ArrayList<Bullet>();
-		player = new Player(50,50,50,50, img,10);
+		player = new Player(50,50,50,50, imgp1,10);
 		inHandler = new InputHandler();
 		addKeyListener(inHandler);
 		
@@ -65,7 +75,6 @@ public class FightClub extends JPanel implements Runnable{
 		g2.clearRect(0, 0, 500, 500);
 
 		for(int w=0; w<bullets.size();w++){
-		System.out.println("this");
 		Bullet bul = (Bullet) bullets.get(w);
 		
 		if(bul.getX_Point()>500||bul.getX_Point()<0||bul.getY_Point()>500||bul.getY_Point()<0){
@@ -106,7 +115,7 @@ public class FightClub extends JPanel implements Runnable{
 	public void run() {
 		while (!paused) {
 			
-			long currentTime = System.nanoTime();
+			currentTime = System.nanoTime();
 			timeBetweenFrames =1000000000/( currentTime - lastTime);
 			System.out.println(timeBetweenFrames);
 			lastTime = currentTime;
@@ -115,51 +124,9 @@ public class FightClub extends JPanel implements Runnable{
 
 			
 			
-			if(currentTime >(oldTime+2000000)){
-			boolean a[]= new boolean[NUMKEYS];
-			double b=0;
-			
-			if(inHandler.getKeys()[KeyEvent.VK_W]){
-				a[0]=true;
-				
-			}
-			if(inHandler.getKeys()[KeyEvent.VK_S]){
-				a[1]=true;
-				
-			}
-			if(inHandler.getKeys()[KeyEvent.VK_A]){
-				a[2]=true;
-				
-			}
-			if(inHandler.getKeys()[KeyEvent.VK_D]){
-				a[3]=true;
-				
-			}
-			
-			if(inHandler.getKeys()[KeyEvent.VK_UP]){
-				b=b+0.01;
-				
-			}
-			
-			if(inHandler.getKeys()[KeyEvent.VK_DOWN]){
-				b=b-0.01;
-				
-			}
 			
 			
-			if(inHandler.getKeys()[KeyEvent.VK_SPACE]){
-				a[4]=true;
-				
-			}
-			
-			player.update(a,b);
-			
-			for(int i=0;i<NUMKEYS;i++){
-				a[i]=false;
-			
-				}	
-			oldTime=currentTime;
-			}
+			update();
 			repaint();
 
 			try {
@@ -171,7 +138,29 @@ public class FightClub extends JPanel implements Runnable{
 		}
 	}
 
+	public void update(){
+		
+		
+		if(currentTime >(oldTime+2000000)){
 
+		
+		getA();
+		
+		player.update(a,b);
+		
+		for(int w=0; w<bullets.size();w++){
+			Bullet bul = (Bullet) bullets.get(w);
+			bul.update();
+		}
+		
+		
+		for(int i=0;i<NUMKEYS;i++){
+			a[i]=false;
+		
+			}	
+		oldTime=currentTime;
+		}
+	}
 
 	public static ArrayList<Bullet> getBullets() {
 		return bullets;
@@ -190,7 +179,43 @@ public class FightClub extends JPanel implements Runnable{
 	}
 
 
-
+	public boolean[] getA() {
+		if(inHandler.getKeys()[KeyEvent.VK_W]){
+			a[0]=true;
+			
+		}
+		if(inHandler.getKeys()[KeyEvent.VK_S]){
+			a[1]=true;
+			
+		}
+		if(inHandler.getKeys()[KeyEvent.VK_A]){
+			a[2]=true;
+			
+		}
+		if(inHandler.getKeys()[KeyEvent.VK_D]){
+			a[3]=true;
+			
+		}
+		
+		if(inHandler.getKeys()[KeyEvent.VK_UP]){
+			b=b+0.01;
+			
+		}
+		
+		if(inHandler.getKeys()[KeyEvent.VK_DOWN]){
+			b=b-0.01;
+			
+		}
+		
+		
+		if(inHandler.getKeys()[KeyEvent.VK_SPACE]){
+			a[4]=true;
+			
+		}
+		
+		
+		return a;
+	}
 
 	
 	//asdf
