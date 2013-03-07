@@ -29,7 +29,9 @@ public class FightClub extends JPanel implements Runnable{
 	private long oldTime=0;
 	private long lastTime=0;
 	private long timeBetweenFrames=0;
+	private long spawningTime =0;
 	private boolean a[]= new boolean[NUMKEYS];
+	private Mode mode[] = new Mode[5];
 
 
 
@@ -41,6 +43,8 @@ public class FightClub extends JPanel implements Runnable{
 	
 	public static final int NUMKEYS=5;
 	public static ArrayList<Bullet> bullets= new ArrayList<Bullet>();
+	public static ArrayList<Player> players= new ArrayList<Player>();
+	public static ArrayList<Enemy> enemies= new ArrayList<Enemy>();
 	public static double lasttime=0;
 
 
@@ -58,9 +62,12 @@ public class FightClub extends JPanel implements Runnable{
 		
 		bullets = new ArrayList<Bullet>();
 		player = new Player(50,50,50,50, imgp1,10);
+		players.add(player);
 		inHandler = new InputHandler();
 		addKeyListener(inHandler);
 		
+		 
+
 		new Thread(this).start();
 	}
 	
@@ -73,6 +80,12 @@ public class FightClub extends JPanel implements Runnable{
 
 		g2.clearRect(0, 0, 500, 500);
 
+		
+			for(int w=0; w<enemies.size();w++){
+			Enemy enim = (Enemy) enemies.get(w);
+			enim.render(g2);
+		}
+		
 		for(int w=0; w<bullets.size();w++){
 		Bullet bul = (Bullet) bullets.get(w);
 		
@@ -83,7 +96,11 @@ public class FightClub extends JPanel implements Runnable{
 		bul.render(g2);
 			}
 		}
+
+		
 		player.render(g2);
+		
+
 		
 	}
 	
@@ -119,9 +136,13 @@ public class FightClub extends JPanel implements Runnable{
 //			System.out.println(timeBetweenFrames);
 			lastTime = currentTime;
 //			System.out.println(1000/timeBetweenFrames);
-
-
 			
+			
+			if(currentTime>(spawningTime+3000000000L)){
+				
+				spawnEnemies();
+				spawningTime=currentTime;
+			}
 			
 			
 			
@@ -140,12 +161,17 @@ public class FightClub extends JPanel implements Runnable{
 	public void update(){
 		
 		
-		if(currentTime >(oldTime+2000000)){
+		if(currentTime >(oldTime+10000000)){
 
 		
 		getA();
 		
 		player.update(a,b);
+		
+		for(int w=0; w<enemies.size();w++){
+			Enemy enim = (Enemy) enemies.get(w);
+			enim.update();
+		}
 		
 		for(int w=0; w<bullets.size();w++){
 			Bullet bul = (Bullet) bullets.get(w);
@@ -168,14 +194,44 @@ public class FightClub extends JPanel implements Runnable{
 			System.out.println("Autsch, selfshot");
 		}
 		
+		for(int i=0;i<enemies.size();i++){
+			Enemy enim = (Enemy) enemies.get(i);
+			
+			
+			if(enim.getRect().contains(bullet.getPoint())){
+				
+				enemies.remove(i);
+				
+				
+			}
+			
+		}
+		
+		
+		
 	}
 
+	private void spawnEnemies(){
+		Image imge1= new ImageIcon(getClass().getResource("img/enemy.png")).getImage();
+
+		
+		int x =(int) (Math.random()*500);
+		
+		Enemy enim = new Enemy(x,0,30,30,imge1,1);
+		enemies.add(enim);
+		
+		
+	}
+	
+	
 
 
 	public static ArrayList<Bullet> getBullets() {
 		return bullets;
 	}
 
+	
+	
 
 
 	public static double getLasttime() {
@@ -225,6 +281,16 @@ public class FightClub extends JPanel implements Runnable{
 		
 		
 		return a;
+	}
+
+
+
+	public static Player getNearestPlayer() {
+		Player play = null;
+		for(int i=0;i<players.size();i++){
+		play = (Player) players.get(i);
+		
+		}return play;
 	}
 
 	
