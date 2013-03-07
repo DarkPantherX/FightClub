@@ -1,10 +1,13 @@
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 
 import javax.swing.ImageIcon;
 
+
+	
 
 public class Bullet extends GameComponents implements Renderer{
 
@@ -15,6 +18,7 @@ public class Bullet extends GameComponents implements Renderer{
 	public int dirY;
 	public double grad;
 	private Image img= new ImageIcon(getClass().getResource("img/bullet.png")).getImage();
+	private Point point;
 	
 	public Bullet(int width, int height, int dirX, int dirY,int x_Point, int y_Point, double grad){
 		this.setWidth(width);
@@ -89,10 +93,33 @@ public class Bullet extends GameComponents implements Renderer{
 
 	public void update(){
 		
-		setX_Point(getX_Point()+(getDirX()/20));
-		setY_Point(getY_Point()+(getDirY()/20));
+		setX_Point(getX_Point()+(getDirX()/25));
+		setY_Point(getY_Point()+(getDirY()/25));
+		setPoint(new Point(getX_Point()+5,getY_Point()+5));
 		
 		
+	}
+
+
+
+
+
+	/**
+	 * @return the point
+	 */
+	public Point getPoint() {
+		return point;
+	}
+
+
+
+
+
+	/**
+	 * @param point the point to set
+	 */
+	public void setPoint(Point point) {
+		this.point = point;
 	}
 
 	
