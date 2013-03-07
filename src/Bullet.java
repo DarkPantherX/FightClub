@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -75,7 +74,6 @@ public class Bullet extends GameComponents implements Renderer{
 	    g.setRenderingHint(
                 RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setColor(Color.white);
 		g.drawImage(getImg(), getX_Point(), getY_Point(), null);
 		
 	}
