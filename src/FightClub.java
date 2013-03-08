@@ -211,6 +211,12 @@ public class FightClub extends JPanel implements Runnable{
 		
 		
 	}
+	
+	private void raphi(){
+		
+		
+	}
+	
 
 	private void spawnEnemies(){
 		Image imge1= new ImageIcon(getClass().getResource("img/enemy.png")).getImage();
@@ -308,6 +314,5 @@ public class FightClub extends JPanel implements Runnable{
 	}
 
 	
-	//asdf
-   // asdf" vom Raphi2 und version 3 boha nr 4
+//removed comments
 }
