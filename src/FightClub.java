@@ -314,10 +314,13 @@ public class FightClub extends JPanel implements Runnable{
 	}
 
 	
+
 	
 	public static void raphi(){
 		
 		
 	}
 	
+
+//removed comments: also hinzugefüt
 }
