@@ -261,6 +261,9 @@ public class FightClub extends JPanel implements Runnable{
 		FightClub.lasttime = lasttime;
 	}
 
+	
+	
+	
 
 	public boolean[] getA() {
 		if(inHandler.getKeys()[KeyEvent.VK_W]){
@@ -311,5 +314,10 @@ public class FightClub extends JPanel implements Runnable{
 	}
 
 	
-//removed comments
+	
+	public static void raphi(){
+		
+		
+	}
+	
 }
