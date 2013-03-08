@@ -309,5 +309,5 @@ public class FightClub extends JPanel implements Runnable{
 
 	
 	//asdf
-   // asdf" vom Raphi2
+   // asdf" vom Raphi2 und version 3 boha nr 4
 }
