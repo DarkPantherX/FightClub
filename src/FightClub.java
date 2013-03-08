@@ -15,7 +15,6 @@ public class FightClub extends JPanel implements Runnable{
 	/**
 	 * 
 	 */
-
 	
 	private static final long serialVersionUID = 1L;
 
