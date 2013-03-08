@@ -212,10 +212,7 @@ public class FightClub extends JPanel implements Runnable{
 		
 	}
 	
-	private void raphi(){
-		
-		
-	}
+//aasfasdfasdfasdf
 	
 
 	private void spawnEnemies(){
