@@ -314,5 +314,5 @@ public class FightClub extends JPanel implements Runnable{
 	}
 
 	
-//removed comments
+//removed comments: also hinzugefüt
 }
