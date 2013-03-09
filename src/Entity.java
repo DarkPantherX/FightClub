@@ -11,17 +11,29 @@ public class Entity extends GameComponents{
 	private int life;
 	private double grad;
 	private Bullet bullet;
+	private FightClub fightclub;
+	private boolean a[];
+	private long oldTime=0;
 	
 	
 	
-	
-	public void update(boolean a[],double b) {
+	public void update(boolean a[],double b,FightClub fightclub) {
+		this.a=a;
+		this.fightclub=fightclub;
+		long currentTime=System.currentTimeMillis();
 		
 		
 		if(a[0]){setY_Point(getY_Point()-1);}
 		if(a[1]){setY_Point(getY_Point()+1);}
 		if(a[2]){setX_Point(getX_Point()-1);}
 		if(a[3]){setX_Point(getX_Point()+1);}
+		if(currentTime>oldTime+500){
+		if(a[6]){
+			fightclub.setMenu(new PauseMenu());
+			aIsDone();
+			oldTime=currentTime;
+		}
+		}
 		
 		
 		
@@ -52,6 +64,16 @@ public class Entity extends GameComponents{
 	}
 	
 	
+	
+	public void aIsDone(){
+		
+		for(int i=0;i<a.length;i++){
+			a[i]=false;
+		}
+		
+		
+			fightclub.setA(a);
+	}
 	
 	
 
@@ -107,6 +129,28 @@ public class Entity extends GameComponents{
 	 */
 	public void setGrad(double grad) {
 		this.grad = grad;
+	}
+
+
+
+
+
+	/**
+	 * @return the fightclub
+	 */
+	public FightClub getFightclub() {
+		return fightclub;
+	}
+
+
+
+
+
+	/**
+	 * @param fightclub the fightclub to set
+	 */
+	public void setFightclub(FightClub fightclub) {
+		this.fightclub = fightclub;
 	}
 	
 	
