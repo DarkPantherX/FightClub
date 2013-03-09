@@ -21,25 +21,29 @@ public class Enemy extends Entity implements Renderer{
 
 	@Override
 	public void render(Graphics2D g) {
-		 g.drawImage(getImg(), getX_Point(), getY_Point(), null);
+		 g.drawImage(getImg(), getX_Point(), getY_Point(),getWidth(),getHeight(), null);
 		
 	}
 	
 	
 	public void update(){
 		Player player = FightClub.getNearestPlayer();
-		if(player.getX_Point()>getX_Point()){
-			setX_Point(getX_Point()+1);
+		double b=FightClub.HEIGHT/500+1;
+		int vel=(int)b;
+		
+		
+		if(player.getX_Point()+25>getX_Point()+15){
+			setX_Point(getX_Point()+vel);
 		}
 		
-		if(player.getX_Point()<getX_Point()){
-			setX_Point(getX_Point()-1);
+		if(player.getX_Point()+25<getX_Point()+15){
+			setX_Point(getX_Point()-vel);
 		}
-		if(player.getY_Point()<getY_Point()){
-			setY_Point(getY_Point()-1);
+		if(player.getY_Point()+25<getY_Point()+15){
+			setY_Point(getY_Point()-vel);
 		}
-		if(player.getY_Point()>getY_Point()){
-			setY_Point(getY_Point()+1);
+		if(player.getY_Point()+25>getY_Point()+15){
+			setY_Point(getY_Point()+vel);
 		}
 		rect = new Rectangle(getX_Point(),getY_Point(),30,30);
 		
