@@ -55,13 +55,13 @@ public class FightClub extends JPanel implements Runnable {
 				.getImage();
 
 		bullets = new ArrayList<Bullet>();
-		player = new Player(50, 50, 50, 50, imgp1, 10);
+		player = new Player(50, 50, 50, 50, imgp1, 10, false);
 		players.add(player);
 		inHandler = new InputHandler();
 		compHandler =new ComponentHandler();
 		addKeyListener(inHandler);
 		addComponentListener(compHandler);
-		setMenu(new StartMenu());
+		setMenu(new IntroScreenMenu());
 		
 		new Thread(this).start();
 	}
@@ -139,7 +139,7 @@ public class FightClub extends JPanel implements Runnable {
 
 	public void update() {
 		if(menu==null){
-		
+		player.setVisible(true);
 			if (currentTime > (oldTime + 10000000)) {
 			
 			getA();
@@ -224,7 +224,7 @@ public class FightClub extends JPanel implements Runnable {
 			x = 0;
 		}
 		
-		Enemy enim = new Enemy(x, y, 30, 30, imge1, 1);
+		Enemy enim = new Enemy(x, y, 30, 30, imge1, 1, true);
 		enemies.add(enim);
 
 	}
