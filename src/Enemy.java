@@ -8,13 +8,14 @@ public class Enemy extends Entity implements Renderer{
 	Rectangle rect;
 	
 	
-	public Enemy(int x_Point,int  y_Point,int width,int height,Image img,int life){
+	public Enemy(int x_Point,int  y_Point,int width,int height,Image img,int life,boolean visible){
 		this.setX_Point(x_Point);
 		this.setY_Point(y_Point);
 		this.setWidth(width);
 		this.setHeight(height);
 		this.setImg(img);
 		this.setLife(life);
+		this.setVisible(visible);
 		
 		rect = new Rectangle(getX_Point(),getY_Point(),30,30);
 	}
@@ -30,7 +31,11 @@ public class Enemy extends Entity implements Renderer{
 		Player player = FightClub.getNearestPlayer();
 		double b=FightClub.HEIGHT/500+1;
 		int vel=(int)b;
-		
+		if(!player.isVisible()){
+			
+			setX_Point(getX_Point()+1);
+			
+		}else{
 		
 		if(player.getX_Point()+25>getX_Point()+15){
 			setX_Point(getX_Point()+vel);
@@ -46,7 +51,7 @@ public class Enemy extends Entity implements Renderer{
 			setY_Point(getY_Point()+vel);
 		}
 		rect = new Rectangle(getX_Point(),getY_Point(),30,30);
-		
+		}
 	}
 
 	public Rectangle getRect() {
