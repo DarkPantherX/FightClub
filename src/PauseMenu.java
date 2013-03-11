@@ -1,3 +1,4 @@
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -17,9 +18,12 @@ public class PauseMenu implements Menu {
 	
 	@Override
 	public void render(Graphics2D g2) {
-		Image backg = new ImageIcon(getClass().getResource("img/pausbg.png")).getImage();
-		g2.drawImage(backg,0,0,FightClub.WIDTH,FightClub.HEIGHT,null);
-		g2.setColor(Color.blue);
+		Image bg = new ImageIcon(getClass().getResource("img/pausbg.png"))
+	.getImage();
+		AlphaComposite composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f);
+		g2.setComposite(composite); // Set current alpha
+		g2.drawImage(bg, 0, 0, FightClub.WIDTH,FightClub.HEIGHT,null);
+
 		
 	}
 
