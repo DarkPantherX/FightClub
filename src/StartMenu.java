@@ -3,10 +3,9 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
 
 
 public class StartMenu implements Menu{
@@ -21,7 +20,7 @@ public class StartMenu implements Menu{
 	
 	public StartMenu(){
 		
-		title = new ImageIcon(getClass().getResource("img/title.png")).getImage();
+		title = Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/Title.png"));
 		try {
 				registerFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getClassLoader().getResource("font/crac.ttf").openStream());
 			} catch (FontFormatException e) {
