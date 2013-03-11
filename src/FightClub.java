@@ -2,10 +2,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -51,9 +50,7 @@ public class FightClub extends JPanel implements Runnable {
 	 */
 
 	public FightClub() {
-		Image imgp1 = new ImageIcon(getClass().getResource("img/player.png"))
-				.getImage();
-
+		Image imgp1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/player.png"));
 		bullets = new ArrayList<Bullet>();
 		player = new Player(50, 50, 50, 50, imgp1, 10, false);
 		players.add(player);
@@ -70,7 +67,8 @@ public class FightClub extends JPanel implements Runnable {
 
 		Graphics2D g2 = (Graphics2D) g;
 
-		g2.clearRect(0, 0, WIDTH, HEIGHT);
+		g2.setColor(Color.black);
+		g2.fillRect(0, 0, WIDTH, HEIGHT);
 
 		
 		if(menu==null){
@@ -149,6 +147,7 @@ public class FightClub extends JPanel implements Runnable {
 			for (int w = 0; w < enemies.size(); w++) {
 				Enemy enim = (Enemy) enemies.get(w);
 				enim.update();
+				enemyHittest(enim);
 			}
 
 			for (int w = 0; w < bullets.size(); w++) {
@@ -181,6 +180,16 @@ public class FightClub extends JPanel implements Runnable {
 		}
 		}
 
+	private void enemyHittest(Enemy enim) {
+		if (player.getRot().createTransformedShape(player.getRect())
+				.contains(enim.getPoint())) {
+
+			
+			enemies.remove(enim);
+		}
+		
+	}
+
 	private void bulletHittest(Bullet bullet) {
 		if (player.getRot().createTransformedShape(player.getRect())
 				.contains(bullet.getPoint())) {
@@ -205,8 +214,7 @@ public class FightClub extends JPanel implements Runnable {
 	// aasfasdfasdfasdf
 
 	private void spawnEnemies() {
-		Image imge1 = new ImageIcon(getClass().getResource("img/enemy.png"))
-				.getImage();
+		Image imge1 =  Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/enemy.png"));
 		int x = 0;
 		int y = 0;
 		double o = Math.random();
@@ -260,12 +268,12 @@ public class FightClub extends JPanel implements Runnable {
 		}
 
 		if (inHandler.getKeys()[KeyEvent.VK_UP]) {
-			b = b + 0.01;
+			b = b + 0.02;
 
 		}
 
 		if (inHandler.getKeys()[KeyEvent.VK_DOWN]) {
-			b = b - 0.01;
+			b = b - 0.02;
 
 		}
 

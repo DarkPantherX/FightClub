@@ -9,6 +9,7 @@ public class Entity extends GameComponents{
 	
 	private Image img;
 	private int life;
+	private int MAXLIFE;
 	private double grad;
 	private Bullet bullet;
 	private FightClub fightclub;
@@ -22,11 +23,15 @@ public class Entity extends GameComponents{
 		this.fightclub=fightclub;
 		long currentTime=System.currentTimeMillis();
 		
+		double vely=(double)FightClub.HEIGHT/(double)500;
+		double velx=(double)FightClub.WIDTH/(double)500;
+		System.out.println(FightClub.HEIGHT);
 		
-		if(a[0]){setY_Point(getY_Point()-1);}
-		if(a[1]){setY_Point(getY_Point()+1);}
-		if(a[2]){setX_Point(getX_Point()-1);}
-		if(a[3]){setX_Point(getX_Point()+1);}
+		
+		if(a[0]){setY_Point(getY_Point()-vely);}
+		if(a[1]){setY_Point(getY_Point()+vely);}
+		if(a[2]){setX_Point(getX_Point()-velx);}
+		if(a[3]){setX_Point(getX_Point()+velx);}
 		if(currentTime>oldTime+500){
 		if(a[6]){
 			fightclub.setMenu(new PauseMenu());
@@ -154,7 +159,18 @@ public class Entity extends GameComponents{
 	}
 	
 	
-	
+	public boolean hasDamge(){
+		
+		if(MAXLIFE>life){
+			
+			return false;
+		}else{
+			
+			return true;
+		}
+		
+		
+	}
 	
 	
 	

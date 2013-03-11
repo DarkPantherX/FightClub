@@ -1,7 +1,6 @@
 import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.Toolkit;
 
-import javax.swing.ImageIcon;
 
 
 public class IntroEnemy extends Entity implements Renderer{
@@ -20,17 +19,13 @@ public class IntroEnemy extends Entity implements Renderer{
 		this.setDir(dir);
 		
 		if(id==0){
-			setImg(new ImageIcon(getClass().getResource("img/enemy.png"))
-			.getImage());
+			setImg(Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/enemy.png")));
 		}else if(id==1){
-			setImg(new ImageIcon(getClass().getResource("img/enemy2.png"))
-			.getImage());
+			setImg(Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/enemy2.png")));
 		}else if(id==2){
-			setImg(new ImageIcon(getClass().getResource("img/enemy3.png"))
-			.getImage());
+			setImg(Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/enemy3.png")));
 		}else if(id==3){
-			setImg(new ImageIcon(getClass().getResource("img/enemyking.png"))
-			.getImage());
+			setImg(Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/enemyking.png")));
 		}
 		
 	}
@@ -47,7 +42,7 @@ public class IntroEnemy extends Entity implements Renderer{
 
 	@Override
 	public void render(Graphics2D g) {
-		 g.drawImage(getImg(), getX_Point(), getY_Point(),getWidth(),getHeight(), null);
+		 g.drawImage(getImg(), (int)getX_Point(), (int)getY_Point(),getWidth(),getHeight(), null);
 		
 	}
 	

@@ -1,8 +1,8 @@
 
 public class GameComponents {
 
-	private int x_Point;
-	private int y_Point;
+	private double x_Point;
+	private double y_Point;
 	private int width;
 	private int height;
 	private boolean visible;
@@ -13,17 +13,17 @@ public class GameComponents {
 	/**
 	 * @return the x_Point
 	 */
-	public int getX_Point() {
+	public double getX_Point() {
 		return x_Point;
 	}
 
 
 
 	/**
-	 * @param x_Point the x_Point to set
+	 * @param d the x_Point to set
 	 */
-	public void setX_Point(int x_Point) {
-		this.x_Point = x_Point;
+	public void setX_Point(double d) {
+		this.x_Point = d;
 	}
 
 
@@ -31,17 +31,17 @@ public class GameComponents {
 	/**
 	 * @return the y_Point
 	 */
-	public int getY_Point() {
+	public double getY_Point() {
 		return y_Point;
 	}
 
 
 
 	/**
-	 * @param y_Point the y_Point to set
+	 * @param d the y_Point to set
 	 */
-	public void setY_Point(int y_Point) {
-		this.y_Point = y_Point;
+	public void setY_Point(double d) {
+		this.y_Point = d;
 	}
 
 
