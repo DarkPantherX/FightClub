@@ -5,6 +5,7 @@ public class GameComponents {
 	private int y_Point;
 	private int width;
 	private int height;
+	private boolean visible;
 	
 	
 	
@@ -77,6 +78,18 @@ public class GameComponents {
 	 */
 	public void setHeight(int height) {
 		this.height = height;
+	}
+
+
+
+	public boolean isVisible() {
+		return visible;
+	}
+
+
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
 	}
 
 
