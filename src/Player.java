@@ -24,7 +24,7 @@ public class Player extends Entity implements Renderer{
 	public void render(Graphics2D g) {
 		
         rot.setToRotation(getGrad(),getX_Point()+getWidth() / 2, getY_Point()+getHeight() / 2);  
-        setRect(new Rectangle(getX_Point(), getY_Point(), getWidth(), getHeight()));  
+        setRect(new Rectangle((int)getX_Point(),(int) getY_Point(), getWidth(), getHeight()));  
 
 		
 
@@ -34,7 +34,7 @@ public class Player extends Entity implements Renderer{
 	    g.setRenderingHint(
                 RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-	    g.drawImage(getImg(), getX_Point(), getY_Point(), null);
+	    g.drawImage(getImg(), (int)getX_Point(), (int)getY_Point(), null);
 
 		
 		
