@@ -2,9 +2,9 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 
-import javax.swing.ImageIcon;
 
 
 	
@@ -17,7 +17,7 @@ public class Bullet extends GameComponents implements Renderer{
 	public int dirX;
 	public int dirY;
 	public double grad;
-	private Image img= new ImageIcon(getClass().getResource("img/bullet.png")).getImage();
+	private Image img=  Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/bullet.png"));
 	private Point point;
 	
 	public Bullet(int width, int height, int dirX, int dirY,int x_Point, int y_Point, double grad){
@@ -78,7 +78,7 @@ public class Bullet extends GameComponents implements Renderer{
 	    g.setRenderingHint(
                 RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-		g.drawImage(getImg(), getX_Point(), getY_Point(), null);
+		g.drawImage(getImg(), (int)getX_Point(), (int)getY_Point(), null);
 		
 	}
 
@@ -93,9 +93,12 @@ public class Bullet extends GameComponents implements Renderer{
 
 	public void update(){
 		
-		setX_Point(getX_Point()+(getDirX()/25));
-		setY_Point(getY_Point()+(getDirY()/25));
-		setPoint(new Point(getX_Point()+5,getY_Point()+5));
+		double velx=((FightClub.WIDTH/500))*5;
+		double vely=((FightClub.WIDTH/500))*5;
+
+		setX_Point(getX_Point()+((getDirX()/20)*velx));
+		setY_Point(getY_Point()+((getDirY()/20)*vely));
+		setPoint(new Point((int)(getX_Point()+5),(int)(getY_Point()+5)));
 		
 		
 	}
