@@ -1,6 +1,7 @@
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
@@ -14,13 +15,14 @@ public class Bullet extends GameComponents implements Renderer{
 
 	
 
-	public int dirX;
-	public int dirY;
+	public double dirX;
+	public double dirY;
 	public double grad;
 	private Image img=  Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/bullet.png"));
 	private Point point;
+	private Rectangle rect;
 	
-	public Bullet(int width, int height, int dirX, int dirY,int x_Point, int y_Point, double grad){
+	public Bullet(int width, int height, double dirX, double dirY,int x_Point, int y_Point, double grad){
 		this.setWidth(width);
 		this.setHeight(height);
 		this.setDirX(dirX);
@@ -31,7 +33,7 @@ public class Bullet extends GameComponents implements Renderer{
 		
 		
 		
-		
+		rect = new Rectangle((int)getX_Point(),(int)getY_Point(),10,10);
 	}
 	
 
@@ -50,20 +52,20 @@ public class Bullet extends GameComponents implements Renderer{
 		}
 
 
-		public int getDirX() {
+		public double getDirX() {
 		return dirX;
 	}
 
 
-	public void setDirX(int dirX) {
+	public void setDirX(double dirX) {
 		this.dirX = dirX;
 	}
 
-	public int getDirY() {
+	public double getDirY() {
 		return dirY;
 	}
 
-	public void setDirY(int dirY) {
+	public void setDirY(double dirY) {
 		this.dirY = dirY;
 	}
 
@@ -99,7 +101,7 @@ public class Bullet extends GameComponents implements Renderer{
 		setX_Point(getX_Point()+((getDirX()/20)*velx));
 		setY_Point(getY_Point()+((getDirY()/20)*vely));
 		setPoint(new Point((int)(getX_Point()+5),(int)(getY_Point()+5)));
-		
+		rect = new Rectangle((int)getX_Point(),(int)getY_Point(),30,30);
 		
 	}
 
@@ -123,6 +125,15 @@ public class Bullet extends GameComponents implements Renderer{
 	 */
 	public void setPoint(Point point) {
 		this.point = point;
+	}
+
+
+
+
+
+	public Rectangle getRect() {
+		// TODO Auto-generated method stub
+		return rect;
 	}
 
 	
