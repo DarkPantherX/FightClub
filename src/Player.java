@@ -8,6 +8,11 @@ public class Player extends Entity implements Renderer{
 
 	private AffineTransform rot = new AffineTransform();
 	private Rectangle rect;
+	private FightClub fightclub;
+	private boolean[] a;
+	private long oldTime=0;
+	private double grad;
+	private Bullet bullet;
 	
 	public Player(int x_Point,int  y_Point,int width,int height,Image img,int life, boolean visible){
 		this.setX_Point(x_Point);
@@ -41,6 +46,61 @@ public class Player extends Entity implements Renderer{
 
 	}
 
+	
+	public void update(boolean a[],double b,FightClub fightclub) {
+		this.a=a;
+		this.fightclub=fightclub;
+		long currentTime=System.currentTimeMillis();
+		
+		double vely=(double)FightClub.HEIGHT/(double)500;
+		double velx=(double)FightClub.WIDTH/(double)500;
+		System.out.println(FightClub.HEIGHT);
+		
+		
+		if(a[0]){setY_Point(getY_Point()-vely);}
+		if(a[1]){setY_Point(getY_Point()+vely);}
+		if(a[2]){setX_Point(getX_Point()-velx);}
+		if(a[3]){setX_Point(getX_Point()+velx);}
+		if(currentTime>oldTime+500){
+		if(a[6]){
+			fightclub.setMenu(new PauseMenu());
+			aIsDone();
+			oldTime=currentTime;
+		}
+		}
+		
+		
+		
+		grad=b;
+		double i = ( getX_Point()+25-Math.cos( grad ) * 25);
+		double j=(getY_Point()+25-Math.sin( grad ) * 25 );
+		
+		double m = ( getX_Point()+25+Math.cos( grad ) * 25);
+		double n=(getY_Point()+25+Math.sin( grad ) * 25 );
+		
+		double dirX=(i-m);
+		double dirY=(j-n);
+		
+		if(a[4]){
+			long time = System.currentTimeMillis();
+			if(FightClub.getLasttime()+500<time){
+				FightClub.setLasttime(time);
+				bullet= new Bullet(10,10,dirX,dirY,(int)i-5,(int)j-5,grad);
+				//System.out.println("Works over here!" + bullet.getY_Point());
+				FightClub.getBullets().add(bullet);
+			}
+			
+		}
+		
+//	System.out.println(i + " "+ j);	
+//	System.out.println(m + " "+ n);	
+//	System.out.println(dirX+" "+ dirY);
+	}
+	
+	
+	
+	
+	
 	/**
 	 * @return the rect
 	 */
@@ -63,10 +123,52 @@ public class Player extends Entity implements Renderer{
 		this.rot = rot;
 	}
 
+	public void aIsDone(){
+		
+		for(int i=0;i<a.length;i++){
+			a[i]=false;
+		}
+		
+		
+			fightclub.setA(a);
+	}
+	
+	
+	/**
+	 * @return the fightclub
+	 */
+	public FightClub getFightclub() {
+		return fightclub;
+	}
 
+
+
+
+
+	/**
+	 * @param fightclub the fightclub to set
+	 */
+	public void setFightclub(FightClub fightclub) {
+		this.fightclub = fightclub;
+	}
+
+	/**
+	 * @param grad the grad to get
+	 */
 	
-	
-	
+	public double getGrad() {
+		return grad;
+	}
+
+
+
+	/**
+	 * @param grad the grad to set
+	 */
+	public void setGrad(double grad) {
+		this.grad = grad;
+	}
+
 
 
 
