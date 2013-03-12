@@ -3,13 +3,14 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.ArrayList;
 
 
 public class StartMenu implements Menu{
-	private String[] options = { "Singleplayer", "Multiplayer", "About" };
+	private String[] options = { "Singleplayer", "Multiplayer", "About", "Options" };
 	private int select=0;
 	private FightClub fightclub;
 	private boolean[] a;
@@ -36,6 +37,12 @@ public class StartMenu implements Menu{
 	@Override
 	public void render(Graphics2D g2) {
 		
+		
+		
+		g2.setRenderingHint(
+                RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+
 		g2.setColor(Color.red);
 		g2.drawImage(title, 40,20,400+(FightClub.WIDTH-500),150+(FightClub.HEIGHT-500),null);
 		
