@@ -200,7 +200,7 @@ public class FightClub extends JPanel implements Runnable {
 		for (int i = 0; i < enemies.size(); i++) {
 			Enemy enim = (Enemy) enemies.get(i);
 
-			if (enim.getRect().contains(bullet.getPoint())) {
+			if (enim.getRect().intersects(bullet.getRect())) {
 
 				enemies.remove(i);
 				bullets.remove(bullet);
