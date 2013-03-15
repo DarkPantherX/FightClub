@@ -51,7 +51,6 @@ public class FightClub extends JPanel implements Runnable {
 
 	public FightClub() {
 		Image imgp1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/player.png"));
-		bullets = new ArrayList<Bullet>();
 		player = new Player(50, 50, 50, 50, imgp1, 10, false);
 		players.add(player);
 		inHandler = new InputHandler();
@@ -251,6 +250,7 @@ public class FightClub extends JPanel implements Runnable {
 	}
 
 	public boolean[] getA() {
+		
 		if (inHandler.getKeys()[KeyEvent.VK_W]) {
 			a[0] = true;
 
