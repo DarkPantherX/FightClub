@@ -54,7 +54,7 @@ public class Player extends Entity implements Renderer{
 		
 		double vely=(double)FightClub.HEIGHT/(double)500;
 		double velx=(double)FightClub.WIDTH/(double)500;
-		System.out.println(FightClub.HEIGHT);
+		//System.out.println(FightClub.HEIGHT);
 		
 		
 		if(a[0]){setY_Point(getY_Point()-vely);}
