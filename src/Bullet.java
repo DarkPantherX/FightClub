@@ -33,7 +33,6 @@ public class Bullet extends GameComponents implements Renderer{
 		
 		
 		
-		rect = new Rectangle((int)getX_Point(),(int)getY_Point(),10,10);
 	}
 	
 
@@ -74,6 +73,7 @@ public class Bullet extends GameComponents implements Renderer{
 	public void render(Graphics2D g) {
 		
 		
+		
 		AffineTransform trans = new AffineTransform();
 	    trans.rotate(getGrad(),getX_Point()+getWidth() / 2, getY_Point()+getHeight() / 2);
 	    g.setTransform(trans);
@@ -95,8 +95,8 @@ public class Bullet extends GameComponents implements Renderer{
 
 	public void update(){
 		
-		double velx=((FightClub.WIDTH/500))*5;
-		double vely=((FightClub.WIDTH/500))*5;
+		double velx=((FightClub.WIDTH/(double)500))*5;
+		double vely=((FightClub.HEIGHT/(double)500))*5;
 
 		setX_Point(getX_Point()+((getDirX()/20)*velx));
 		setY_Point(getY_Point()+((getDirY()/20)*vely));
