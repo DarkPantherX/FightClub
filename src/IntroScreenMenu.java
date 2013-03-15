@@ -41,11 +41,11 @@ public class IntroScreenMenu implements Menu {
 		
 		
 		
-		g2.setRenderingHint(
+		g2.setRenderingHint( // smooth
                 RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
-		if(count<=0){
+		if(count<=0){ // count == 0
 		g2.setColor(Color.white);
 		g2.fillRect(0, 0, FightClub.WIDTH, FightClub.HEIGHT);
 		g2.drawImage(intro, FightClub.WIDTH/2-170,FightClub.HEIGHT/2-100,null);
@@ -80,30 +80,25 @@ public class IntroScreenMenu implements Menu {
 	public void update(FightClub fightclub, boolean[] a) {
 		long currentTime=System.currentTimeMillis();
 		
-		if(i==0){
+		if(i==0){  
 			timeOld=currentTime;
 			i++;
-			
 		}
+		
 		if(currentTime>timeOld+5000){
-			fightclub.setMenu(new StartMenu());
-			
-			
+			fightclub.setMenu(new StartMenu());			
 		}
 		
 		if(currentTime>timeOld+2750&&currentTime<timeOld+3000){
-			
-			count=1;
-
-			
+			count=1; // change
 		}
+		
 		if(currentTime>timeOld+3000&&currentTime<timeOld+3100){
 			
 			count=0;
 		}
 		
 		if(currentTime>timeOld+3250&&currentTime<timeOld+3500){
-			
 			count=1;
 		}
 		
