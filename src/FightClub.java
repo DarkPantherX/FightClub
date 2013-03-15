@@ -98,7 +98,7 @@ public class FightClub extends JPanel implements Runnable {
 
 	public void addNotify() {
 		super.addNotify();
-		requestFocus();
+		requestFocus(); // nöf uf em frame, sondern uf em panel
 	}
 
 	public static void main(String[] args) {
@@ -123,7 +123,7 @@ public class FightClub extends JPanel implements Runnable {
 			// System.out.println(1000/timeBetweenFrames);
 
 			update();
-			repaint();
+			repaint(); // to paintcomponent
 
 			try {
 				Thread.sleep((long) 1.0);
@@ -137,8 +137,8 @@ public class FightClub extends JPanel implements Runnable {
 
 	public void update() {
 		if(menu==null){
-		player.setVisible(true);
-			if (currentTime > (oldTime + 10000000)) {
+		player.setVisible(true); // Gehört da nicht rein
+			if (currentTime > (oldTime + 10000000)) { // 1/100 sec
 			
 			getA();
 			
@@ -170,7 +170,7 @@ public class FightClub extends JPanel implements Runnable {
 
 		}
 		}else{
-			if (currentTime > (oldTime + 100000000)) {	
+			if (currentTime > (oldTime + 100000000)) {	// jede 10tel sekunden
 				menu.update(this,getA());
 			
 				oldTime=currentTime;
