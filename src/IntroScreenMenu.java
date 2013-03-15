@@ -50,6 +50,7 @@ public class IntroScreenMenu implements Menu {
 		g2.fillRect(0, 0, FightClub.WIDTH, FightClub.HEIGHT);
 		g2.drawImage(intro, FightClub.WIDTH/2-170,FightClub.HEIGHT/2-100,null);
 		
+		
 		g2.setFont(registerFont.deriveFont(53f));
 		g2.setColor(new Color(65,150,228));
 		g2.drawString("DarkCoder Production", FightClub.WIDTH/2-216, 50);
