@@ -63,7 +63,7 @@ public class StartMenu implements Menu{
 		g2.setColor(new Color(64,34,35));
 		g2.drawString(msg,FightClub.WIDTH/2-130+4,(50*i+250+(FightClub.HEIGHT-500)));
 		int ou=(int)(Math.random()*4);
-		System.out.println(ou);
+		//System.out.println(ou);
 		if(!introenemies.isEmpty()){
 			
 		if(introenemies.size()*30+25<FightClub.WIDTH&&((IntroEnemy)introenemies.get(introenemies.size()-1)).getX_Point()>50){
