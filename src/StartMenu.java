@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 
 public class StartMenu implements Menu{
-	private String[] options = { "Singleplayer", "Multiplayer", "About", "Options" };
+	private String[] options = { "Singleplayer", "Multiplayer", "About" };
 	private int select=0;
 	private FightClub fightclub;
 	private boolean[] a;
@@ -43,17 +43,16 @@ public class StartMenu implements Menu{
                 RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
-		g2.setColor(Color.red);
 		g2.drawImage(title, 40,20,400+(FightClub.WIDTH-500),150+(FightClub.HEIGHT-500),null);
 		
 		for(int i=0;i<options.length;i++){
 			String msg=options[i];
 			
 			if(i==select){
-				msg="-->"+options[i];
+				msg="--> "+msg;
 				
 			}
-			
+		
 			
 			g2.setColor(Color.red);
 			g2.setFont(registerFont.deriveFont(17f));
@@ -62,6 +61,8 @@ public class StartMenu implements Menu{
 		g2.drawString(msg,FightClub.WIDTH/2-130+2,(50*i+250+(FightClub.HEIGHT-500)));
 		g2.setColor(new Color(64,34,35));
 		g2.drawString(msg,FightClub.WIDTH/2-130+4,(50*i+250+(FightClub.HEIGHT-500)));
+		
+		
 		int ou=(int)(Math.random()*4);
 		//System.out.println(ou);
 		if(!introenemies.isEmpty()){
@@ -116,7 +117,7 @@ public class StartMenu implements Menu{
 			if(en.getX_Point()<-20){
 				introenemiess.remove(en);
 			
-		}
+			}
 		}
 		
 		
@@ -126,7 +127,7 @@ public class StartMenu implements Menu{
 		
 		g2.setFont(registerFont.deriveFont(12f));
 		g2.setColor(new Color(49,83,111));
-		g2.drawString("Copyright (C) by DarKCoder", 0,FightClub.HEIGHT-20);
+		g2.drawString("Copyright © by DarKCoder", 0,FightClub.HEIGHT-20);
 	}
 
 	
