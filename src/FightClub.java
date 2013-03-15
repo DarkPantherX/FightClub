@@ -15,7 +15,7 @@ public class FightClub extends JPanel implements Runnable {
 	 */
 
 	
-	//2Coments
+	
 	
 	private static final long serialVersionUID = 1L;
 
@@ -214,7 +214,6 @@ public class FightClub extends JPanel implements Runnable {
 
 	}
 
-	// aasfasdfasdfasdf
 
 	private void spawnEnemies() {
 		Image imge1 =  Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/enemy.png"));
