@@ -33,7 +33,7 @@ public class Bullet extends GameComponents implements Renderer{
 		
 		
 		
-		rect = new Rectangle((int)getX_Point(),(int)getY_Point(),10,10);
+		
 	}
 	
 
@@ -95,9 +95,9 @@ public class Bullet extends GameComponents implements Renderer{
 
 	public void update(){
 		
-		double velx=((FightClub.WIDTH/500))*5;
-		double vely=((FightClub.WIDTH/500))*5;
-
+		double velx=((FightClub.WIDTH/(double)500))*5;
+		double vely=((FightClub.HEIGHT/(double)500))*5;
+		System.out.println(velx);
 		setX_Point(getX_Point()+((getDirX()/20)*velx));
 		setY_Point(getY_Point()+((getDirY()/20)*vely));
 		setPoint(new Point((int)(getX_Point()+5),(int)(getY_Point()+5)));
