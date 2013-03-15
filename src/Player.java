@@ -64,7 +64,7 @@ public class Player extends Entity implements Renderer{
 		if(currentTime>oldTime+500){
 		if(a[6]){
 			fightclub.setMenu(new PauseMenu());
-			aIsDone();
+
 			oldTime=currentTime;
 		}
 		}
@@ -123,15 +123,6 @@ public class Player extends Entity implements Renderer{
 		this.rot = rot;
 	}
 
-	public void aIsDone(){
-		
-		for(int i=0;i<a.length;i++){
-			a[i]=false;
-		}
-		
-		
-			fightclub.setA(a);
-	}
 	
 	
 	/**
