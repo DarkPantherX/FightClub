@@ -59,7 +59,7 @@ public class FightClub extends JPanel implements Runnable {
 		addComponentListener(compHandler);
 		setMenu(new IntroScreenMenu());
 		
-		new Thread(this).start();//this.run
+		new Thread(this).start();
 	}
 
 	public void paintComponent(Graphics g) {
@@ -249,9 +249,7 @@ public class FightClub extends JPanel implements Runnable {
 		FightClub.lasttime = lasttime;
 	}
 
-	public boolean[] getA() { // name
-		
-		
+	public boolean[] getA() {
 		
 		if (inHandler.getKeys()[KeyEvent.VK_W]) {
 			a[0] = true;
