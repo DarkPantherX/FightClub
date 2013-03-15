@@ -13,7 +13,7 @@ public class FightClub extends JPanel implements Runnable {
 	/**
 	 * 
 	 */
-
+	
 	
 	
 	
@@ -140,7 +140,7 @@ public class FightClub extends JPanel implements Runnable {
 
 	public void update() {
 		if(menu==null){
-		player.setVisible(true); // Gehört da nicht rein
+		player.setVisible(true); // belongs not here
 			if (currentTime > (oldTime + 10000000)) { // 1/100 sec
 			
 			getA();
