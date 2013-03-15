@@ -60,7 +60,7 @@ public class Enemy extends Entity implements Renderer{
 	}
 
 	public Rectangle getRect() {
-		// TODO Auto-generated method stub
+
 		return rect;
 	}
 
