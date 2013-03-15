@@ -59,7 +59,7 @@ public class FightClub extends JPanel implements Runnable {
 		addComponentListener(compHandler);
 		setMenu(new IntroScreenMenu());
 		
-		new Thread(this).start();// "this.run()"
+		new Thread(this).start();//this.run
 	}
 
 	public void paintComponent(Graphics g) {
@@ -250,6 +250,9 @@ public class FightClub extends JPanel implements Runnable {
 	}
 
 	public boolean[] getA() { // name
+		
+		
+		
 		if (inHandler.getKeys()[KeyEvent.VK_W]) {
 			a[0] = true;
 
