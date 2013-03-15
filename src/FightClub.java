@@ -13,9 +13,8 @@ public class FightClub extends JPanel implements Runnable {
 	/**
 	 * 
 	 */
-
 	
-	//comment!!!!!!!!!!!
+	//2Coments
 	
 	private static final long serialVersionUID = 1L;
 
@@ -140,7 +139,7 @@ public class FightClub extends JPanel implements Runnable {
 
 	public void update() {
 		if(menu==null){
-		player.setVisible(true); // Gehört da nicht rein
+		player.setVisible(true); // belongs not here
 			if (currentTime > (oldTime + 10000000)) { // 1/100 sec
 			
 			getA();
@@ -213,8 +212,6 @@ public class FightClub extends JPanel implements Runnable {
 		}
 
 	}
-
-	// aasfasdfasdfasdf
 
 	private void spawnEnemies() {
 		Image imge1 =  Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/enemy.png"));
