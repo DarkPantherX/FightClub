@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
@@ -16,6 +17,7 @@ public class Enemy extends Entity implements Renderer {
 		this.setHeight(height);
 		this.setImg(img);
 		this.setLife(life);
+		this.setMaxLife(life);
 		this.setVisible(visible);
 
 		rect = new Rectangle((int) getX_Point(), (int) getY_Point(), 30, 30);
@@ -25,7 +27,20 @@ public class Enemy extends Entity implements Renderer {
 	public void render(Graphics2D g) {
 		g.drawImage(getImg(), (int) getX_Point(), (int) getY_Point(),
 				getWidth(), getHeight(), null);
-
+		
+		double lifePiece=getWidth()/getMaxLife();
+		//draws the life of the player
+				for(int i=1;i<=getLife();i++){
+					g.setColor(Color.green);
+					g.fillRect((int)(getX_Point()-lifePiece+lifePiece*i), (int)getY_Point()-9, (int)lifePiece, 3);
+					
+				}
+		//this draws the life, that has been lost
+				for(int i=getLife()+1;i<getMaxLife()+1;i++){
+					g.setColor(Color.red);
+					g.fillRect((int)(getX_Point()-lifePiece+lifePiece*i), (int)getY_Point()-9, (int)lifePiece, 3);
+					
+				}
 	}
 
 	public void update() {
