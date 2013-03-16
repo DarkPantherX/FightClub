@@ -43,31 +43,39 @@ public class Player extends Entity implements Renderer {
 
 	}
 
-	
-
-
 	public void update(boolean a[], double b, FightClub fightclub) {
 		this.a = a;
 		this.fightclub = fightclub;
 		long currentTime = System.currentTimeMillis();
 
-		double vely = (double) FightClub.HEIGHT / (double) 500;
-		double velx = (double) FightClub.WIDTH / (double) 500;
-		// System.out.println(FightClub.HEIGHT);
+		double vel = 1; // 1 means 1/5 of the size of the field per second
 
-		if (a[0]) {
-			setY_Point(getY_Point() - vely);
+		int dx = 0; // can be 0, -1, 1 just for the direction
+		int dy = 0;
+		if (a[0]) { // W
+			dy -= 1;
 		}
-		if (a[1]) {
-			setY_Point(getY_Point() + vely);
+		if (a[1]) { // S
+			dy += 1;
 		}
-		if (a[2]) {
-			setX_Point(getX_Point() - velx);
+		if (a[2]) { // A
+			dx -= 1;
+		}
+		if (a[3]) { // D
+			dx += 1;
+		}
+		if (dx != 0 && dy != 0) { // diagonal
+			setX_Point(getX_Point() + dx / Math.sqrt(2) * vel * FightClub.WIDTH
+					/ (double) 500);
+			setY_Point(getY_Point() + dy / Math.sqrt(2) * vel
+					* FightClub.HEIGHT / (double) 500);
+		} else if (dy != 0) {
+			setY_Point(getY_Point() + dy * vel * FightClub.HEIGHT
+					/ (double) 500);
+		} else if (dx != 0) {
+			setX_Point(getX_Point() + dx * vel * FightClub.WIDTH / (double) 500);
+		}
 
-		}
-		if (a[3]) {
-			setX_Point(getX_Point() + velx);
-		}
 		if (currentTime > oldTime + 500) {
 			if (a[6]) {
 				fightclub.setMenu(new PauseMenu());
@@ -134,7 +142,6 @@ public class Player extends Entity implements Renderer {
 
 		fightclub.setA(a);
 	}
-
 
 	/**
 	 * @return the fightclub
