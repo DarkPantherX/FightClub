@@ -115,7 +115,7 @@ public class Player extends Entity implements Renderer {
 			if (FightClub.getLasttime() + 500 < time) {
 				FightClub.setLasttime(time);
 				bullet = new Bullet(10, 10, dirX, dirY, (int) i - 5,
-						(int) j - 5, grad);
+						(int) j - 5, grad, getPower());
 				// System.out.println("Works over here!" + bullet.getY_Point());
 				FightClub.getBullets().add(bullet);
 			}
@@ -125,6 +125,12 @@ public class Player extends Entity implements Renderer {
 		// System.out.println(i + " "+ j);
 		// System.out.println(m + " "+ n);
 		// System.out.println(dirX+" "+ dirY);
+	}
+
+	private int getPower() {
+		int power=1;
+		
+		return power;
 	}
 
 	/**
