@@ -259,7 +259,8 @@ public class FightClub extends JPanel implements Runnable {
 
 			if (enim.getRect().intersects(bullet.getRect())) {
 				//method to remove lifes, when hit
-				enim.setLife(enim.getLife()-1);
+				//the number of removed lifes is exactly the number of the bullet power
+				enim.setLife(enim.getLife()-bullet.getPower());
 				bullets.remove(bullet);
 	
 			}
