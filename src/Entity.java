@@ -9,7 +9,7 @@ public class Entity extends GameComponents{
 	
 	private Image img;
 	private int life;
-	private int MAXLIFE;
+	private int maxLife;
 	
 
 	/**
@@ -52,9 +52,25 @@ public class Entity extends GameComponents{
 
 	
 	
+	public int getMaxLife() {
+		return maxLife;
+	}
+
+
+
+
+
+	public void setMaxLife(int mAXLIFE) {
+		maxLife = mAXLIFE;
+	}
+
+
+
+
+
 	public boolean hasDamge(){
 		
-		if(MAXLIFE>life){
+		if(maxLife>life){
 			
 			return false;
 		}else{
