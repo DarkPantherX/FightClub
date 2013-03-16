@@ -43,17 +43,17 @@ public class Player extends Entity implements Renderer {
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		g.drawImage(getImg(), (int) getX_Point(), (int) getY_Point(), null);
 		
-		
+		double lifePiece=getWidth()/getMaxLife();
 		//draws the life of the player
 		for(int i=1;i<=getLife();i++){
 			g.setColor(Color.green);
-			g.fillRect((int)(getX_Point()+(getWidth()/2-30)+5*i), (int)getY_Point(), 5, 7);
+			g.fillRect((int)(getX_Point()-lifePiece+lifePiece*i), (int)getY_Point(), (int)lifePiece, 7);
 			
 		}
 		//this draws the life, that has been lost
 		for(int i=getLife()+1;i<getMaxLife()+1;i++){
 			g.setColor(Color.red);
-			g.fillRect((int)(getX_Point()+(getWidth()/2-30)+5*i), (int)getY_Point(), 5, 7);
+			g.fillRect((int)(getX_Point()-lifePiece+lifePiece*i), (int)getY_Point(), (int)lifePiece, 7);
 			
 		}
 
