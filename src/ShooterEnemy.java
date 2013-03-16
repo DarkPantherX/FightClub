@@ -46,8 +46,8 @@ public class ShooterEnemy extends Enemy{
 			d[1]=player.getY_Point()-getY_Point();
 			double c[]=getDig(d);
 		
-			
-			Bullet bul = new Bullet(10,10,c[0],c[1],(int)(getX_Point()-c[0]),(int)(getY_Point()+c[1]),0);
+			//sorry sc, had to add a number to your enemy, because of changed bullet strength (look under Bullet ->power)
+			Bullet bul = new Bullet(10,10,c[0],c[1],(int)(getX_Point()-c[0]),(int)(getY_Point()+c[1]),0,1);
 			FightClub.bullets.add(bul);
 			oldTime= currentTime;
 			
