@@ -258,10 +258,14 @@ public class FightClub extends JPanel implements Runnable {
 			Enemy enim = (Enemy) enemies.get(i);
 
 			if (enim.getRect().intersects(bullet.getRect())) {
-
-				enemies.remove(i);
+				//method to remove lifes, when hit
+				enim.setLife(enim.getLife()-1);
 				bullets.remove(bullet);
-
+	
+			}
+			//if lives equals zero, the enemy is removed
+			if(enim.getLife()==0){
+				enemies.remove(enim);
 			}
 
 		}
@@ -290,7 +294,7 @@ public class FightClub extends JPanel implements Runnable {
 			x = 0;
 		}
 		// makes a new enemy and adds them to the list
-		Enemy enim = new Enemy(x, y, 30, 30, imge1, 1, true);
+		Enemy enim = new Enemy(x, y, 30, 30, imge1, 2, true);
 		enemies.add(enim);
 
 	}
