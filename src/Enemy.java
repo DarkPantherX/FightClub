@@ -30,7 +30,11 @@ public class Enemy extends Entity implements Renderer {
 
 	public void update() {
 		Player player = FightClub.getNearestPlayer();
+		//marked vely as unused
+		@SuppressWarnings("unused")
 		double vely = FightClub.HEIGHT / (double) 500;
+		//marked velx as unused
+		@SuppressWarnings("unused")
 		double velx = FightClub.WIDTH / (double) 500;
 		double vel = 1;
 
