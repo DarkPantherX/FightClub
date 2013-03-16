@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -22,6 +23,7 @@ public class Player extends Entity implements Renderer {
 		this.setHeight(height);
 		this.setImg(img);
 		this.setLife(life);
+		this.setMaxLife(life);
 		this.setVisible(visible);
 
 	}
@@ -40,6 +42,20 @@ public class Player extends Entity implements Renderer {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		g.drawImage(getImg(), (int) getX_Point(), (int) getY_Point(), null);
+		
+		
+		//draws the life of the player
+		for(int i=1;i<=getLife();i++){
+			g.setColor(Color.green);
+			g.fillRect((int)(getX_Point()+(getWidth()/2-30)+5*i), (int)getY_Point(), 5, 7);
+			
+		}
+		//this draws the life, that has been lost
+		for(int i=getLife()+1;i<getMaxLife()+1;i++){
+			g.setColor(Color.red);
+			g.fillRect((int)(getX_Point()+(getWidth()/2-30)+5*i), (int)getY_Point(), 5, 7);
+			
+		}
 
 	}
 
