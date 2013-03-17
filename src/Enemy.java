@@ -54,8 +54,8 @@ public class Enemy extends Entity implements Renderer {
 			// setX_Point(getX_Point() + 1);
 
 		} else {
-			double dx = player.getX_Point() + 25 - (this.getX_Point() + WIDTH/2);
-			double dy = player.getY_Point() + 25 - (this.getY_Point() + WIDTH/2);
+			double dx = player.getX_Point() + 25 - (this.getX_Point() + 15);
+			double dy = player.getY_Point() + 25 - (this.getY_Point() + 15);
 
 			double dist = Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2));
 			

@@ -32,7 +32,7 @@ public class ShooterEnemy extends Enemy {
 			
 			
 		    // Enemy moves if it is outside the viewable field or if it is farther away than rad1 from the nearest player	
-			if (dist > rad1 || getX_Point()<0 || getX_Point()>FightClub.WIDTH-this.WIDTH || getY_Point()<0 || getY_Point()>FightClub.HEIGHT-this.WIDTH) { 
+			if (dist > rad1 || getX_Point()<0 || getX_Point()>FightClub.WIDTH-this.WIDTH || getY_Point()<0 || getY_Point()>FightClub.HEIGHT-30) { 
 				setX_Point(getX_Point() + dx / dist * vel * FightClub.WIDTH
 						/ (double) 500);
 				setY_Point(getY_Point() + dy / dist * vel * FightClub.HEIGHT
