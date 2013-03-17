@@ -1,15 +1,13 @@
-import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.Color;
 
-import javax.swing.ImageIcon;
 
 
 public class PauseMenu implements Menu {
 
 	
-	private String[] options = { "Singleplayer", "Multiplayer", "About" };
-	private int select=0;
+	//private String[] options = { "Singleplayer", "Multiplayer", "About" };
+	//private int select=0;
 	private FightClub fightclub;
 	private boolean[] a;
 	
@@ -17,11 +15,9 @@ public class PauseMenu implements Menu {
 	
 	@Override
 	public void render(Graphics2D g2) {
-		Image bg = new ImageIcon(getClass().getResource("img/pausbg.png"))
-	.getImage();
-		AlphaComposite composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f);
-		g2.setComposite(composite); // Set current alpha
-		g2.drawImage(bg, 0, 0, FightClub.WIDTH,FightClub.HEIGHT,null);
+		//removed unused picture
+		g2.setColor(new Color(117,171,193,120));
+		g2.fillRect(0, 0, FightClub.WIDTH, FightClub.HEIGHT);
 
 		
 	}

@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -22,6 +23,7 @@ public class Player extends Entity implements Renderer {
 		this.setHeight(height);
 		this.setImg(img);
 		this.setLife(life);
+		this.setMaxLife(life);
 		this.setVisible(visible);
 
 	}
@@ -40,6 +42,20 @@ public class Player extends Entity implements Renderer {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		g.drawImage(getImg(), (int) getX_Point(), (int) getY_Point(), null);
+		
+		double lifePiece=getWidth()/getMaxLife();
+		//draws the life of the player
+		for(int i=1;i<=getLife();i++){
+			g.setColor(Color.green);
+			g.fillRect((int)(getX_Point()-lifePiece+lifePiece*i), (int)getY_Point(), (int)lifePiece, 7);
+			
+		}
+		//this draws the life, that has been lost
+		for(int i=getLife()+1;i<getMaxLife()+1;i++){
+			g.setColor(Color.red);
+			g.fillRect((int)(getX_Point()-lifePiece+lifePiece*i), (int)getY_Point(), (int)lifePiece, 7);
+			
+		}
 
 	}
 
@@ -99,7 +115,7 @@ public class Player extends Entity implements Renderer {
 			if (FightClub.getLasttime() + 500 < time) {
 				FightClub.setLasttime(time);
 				bullet = new Bullet(10, 10, dirX, dirY, (int) i - 5,
-						(int) j - 5, grad);
+						(int) j - 5, grad, getPower());
 				// System.out.println("Works over here!" + bullet.getY_Point());
 				FightClub.getBullets().add(bullet);
 			}
@@ -109,6 +125,12 @@ public class Player extends Entity implements Renderer {
 		// System.out.println(i + " "+ j);
 		// System.out.println(m + " "+ n);
 		// System.out.println(dirX+" "+ dirY);
+	}
+
+	private int getPower() {
+		int power=1;
+		
+		return power;
 	}
 
 	/**

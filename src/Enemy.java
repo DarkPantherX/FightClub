@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
@@ -16,6 +17,7 @@ public class Enemy extends Entity implements Renderer {
 		this.setHeight(height);
 		this.setImg(img);
 		this.setLife(life);
+		this.setMaxLife(life);
 		this.setVisible(visible);
 
 		rect = new Rectangle((int) getX_Point(), (int) getY_Point(), 30, 30);
@@ -25,11 +27,30 @@ public class Enemy extends Entity implements Renderer {
 	public void render(Graphics2D g) {
 		g.drawImage(getImg(), (int) getX_Point(), (int) getY_Point(),
 				getWidth(), getHeight(), null);
-
+		
+		double lifePiece=getWidth()/getMaxLife();
+		//draws the life of the player
+				for(int i=1;i<=getLife();i++){
+					g.setColor(Color.green);
+					g.fillRect((int)(getX_Point()-lifePiece+lifePiece*i), (int)getY_Point()-9, (int)lifePiece, 3);
+					
+				}
+		//this draws the life, that has been lost
+				for(int i=getLife()+1;i<getMaxLife()+1;i++){
+					g.setColor(Color.red);
+					g.fillRect((int)(getX_Point()-lifePiece+lifePiece*i), (int)getY_Point()-9, (int)lifePiece, 3);
+					
+				}
 	}
 
 	public void update() {
 		Player player = FightClub.getNearestPlayer();
+		//marked vely as unused
+		@SuppressWarnings("unused")
+		double vely = FightClub.HEIGHT / (double) 500;
+		//marked velx as unused
+		@SuppressWarnings("unused")
+		double velx = FightClub.WIDTH / (double) 500;
 		double vel = 1;
 
 		if (!player.isVisible()) {
@@ -40,10 +61,8 @@ public class Enemy extends Entity implements Renderer {
 			double dx = player.getX_Point() + 25 - (this.getX_Point() + 15);
 			double dy = player.getY_Point() + 25 - (this.getY_Point() + 15);
 
-			double gap=Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2));
-			
-			this.setX_Point(getX_Point()+dx/gap*vel*FightClub.WIDTH/(double)500);
-			this.setY_Point(getY_Point()+dy/gap*vel*FightClub.HEIGHT/(double)500);
+			this.setX_Point(getX_Point()+dx/Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2))*vel*FightClub.WIDTH/(double)500);
+			this.setY_Point(getY_Point()+dy/Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2))*vel*FightClub.HEIGHT/(double)500);
 			
 			rect = new Rectangle((int) getX_Point(), (int) getY_Point(), 30, 30);
 			point = new Point((int) (getX_Point() + (getWidth() / 2)),

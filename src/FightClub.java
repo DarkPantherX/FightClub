@@ -13,39 +13,32 @@ public class FightClub extends JPanel implements Runnable {
 	/**
 	 * 
 	 */
-	
-	
-	
-	
+
+	// public static variables
 	private static final long serialVersionUID = 1L;
-
 	private static boolean paused = false;
-
-	private Player player;
-
-	private InputHandler inHandler;
-	private ComponentHandler compHandler;
-	private long currentTime;
-	private long oldTime = 0;
-	private long lastTime = 0;
-	private long timeBetweenFrames = 0;
-	private long spawningTime = 0;
-	private boolean a[] = new boolean[NUMKEYS];
-	private Mode mode[] = new Mode[5];
-
-	private double b = 0;
-
-	private Menu menu;
-
-	public static final int NUMKEYS = 7;
+	public static final int NUMKEYS = 8;
 	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 	public static ArrayList<Player> players = new ArrayList<Player>();
 	public static ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	public static double lasttime = 0;
-	public static int HEIGHT=500;
-	public static int WIDTH=500;
+	public static int HEIGHT = 500;
+	public static int WIDTH = 500;
 
-	
+	// default non-static variables variables
+	Player player;
+
+	// private non-static variables
+	private Menu menu;
+	private InputHandler inHandler;
+	private ComponentHandler compHandler;
+	private long currentTime;
+	private long oldTime = 0;
+	//private long lastTime = 0;
+	// private long timeBetweenFrames = 0;
+	private long spawningTime = 0;
+	private boolean a[] = new boolean[NUMKEYS];
+	private double b = 0;
 
 	/**
 	 * @param args
@@ -53,61 +46,77 @@ public class FightClub extends JPanel implements Runnable {
 	 */
 
 	public FightClub() {
-		Image imgp1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/player.png"));
+		Image imgp1 = Toolkit.getDefaultToolkit().getImage(
+				getClass().getResource("img/player.png"));
+		// makes new player and adds it to the game
 		player = new Player(50, 50, 50, 50, imgp1, 10, false);
 		players.add(player);
+		// makes new listener (ComponentHandler and InputHandler) and add them
+		// to the game
 		inHandler = new InputHandler();
-		compHandler =new ComponentHandler();
+		compHandler = new ComponentHandler();
 		addKeyListener(inHandler);
 		addComponentListener(compHandler);
+		// sets the menu to the IntroScreenMenu (at the begin of the game)
 		setMenu(new IntroScreenMenu());
-		
+
+		// start the game thread (run-method)
 		new Thread(this).start();
 	}
 
+	// main render logic of the game
 	public void paintComponent(Graphics g) {
 
+		// makes Graphics to Graphics2D
 		Graphics2D g2 = (Graphics2D) g;
 
+		// over draws the old image
 		g2.setColor(Color.black);
 		g2.fillRect(0, 0, WIDTH, HEIGHT);
 
-		
-		if(menu==null){
-		for (int w = 0; w < enemies.size(); w++) {
-			Enemy enim = (Enemy) enemies.get(w);
-			enim.render(g2);
-		}
-
-		for (int w = 0; w < bullets.size(); w++) {
-			Bullet bul = (Bullet) bullets.get(w);
-
-			if (bul.getX_Point() > WIDTH || bul.getX_Point() < 0
-					|| bul.getY_Point() > HEIGHT || bul.getY_Point() < 0) {
-				bullets.remove(w);
-			} else {
-				// System.out.println("Works: "+w);
-				bul.render(g2);
+		// if there is no menu to render it renders the game self
+		if (menu == null) {
+			// draws all enemies
+			for (int w = 0; w < enemies.size(); w++) {
+				Enemy enim = (Enemy) enemies.get(w);
+				enim.render(g2);
 			}
-		}
 
-		player.render(g2);
-		}else{
+			// draws all bullets and checks if they are still in the frame
+			for (int w = 0; w < bullets.size(); w++) {
+				Bullet bul = (Bullet) bullets.get(w);
+
+				if (bul.getX_Point() > WIDTH || bul.getX_Point() < 0
+						|| bul.getY_Point() > HEIGHT || bul.getY_Point() < 0) {
+					bullets.remove(w);
+				} else {
+					// System.out.println("Works: "+w);
+					bul.render(g2);
+				}
+			}
+			// draw the player
+			player.render(g2);
+		} else {
+			// if there is a menu, the menu is drawn, not the game itself
 			menu.render(g2);
-			
-			
+
 		}
 	}
 
+	// gets the focus from the frame to the panel
 	public void addNotify() {
 		super.addNotify();
-		requestFocus(); // not on the frame, on the panel
+		requestFocus();
 	}
 
+	// Main-method
 	public static void main(String[] args) {
+		// opens new frame
 		JFrame frame = new JFrame();
 		frame.setSize(500, 500);
+		// game paused false
 		paused = false;
+		// make a new JPanel (this FightClub class) and adds it to the frame
 		final FightClub mainP = new FightClub();
 		frame.add(mainP);
 		frame.setVisible(true);
@@ -116,13 +125,14 @@ public class FightClub extends JPanel implements Runnable {
 
 	}
 
+	// the main game cycle
 	public void run() {
 		while (!paused) {
 
 			currentTime = System.nanoTime();
-			timeBetweenFrames = 1000000000 / (currentTime - lastTime);
+			// timeBetweenFrames = 1000000000 / (currentTime - lastTime);
 			// System.out.println(timeBetweenFrames);
-			lastTime = currentTime;
+			//lastTime = currentTime;
 			// System.out.println(1000/timeBetweenFrames);
 
 			update();
@@ -134,92 +144,143 @@ public class FightClub extends JPanel implements Runnable {
 				System.out.println("Coulden't start sleep:" + e);
 				e.printStackTrace();
 			}
-			
+
 		}
 	}
 
+	// origin of all updates in the game
 	public void update() {
-		if(menu==null){
-		player.setVisible(true); // belongs not here
+		if (menu == null) {
+			player.setVisible(true); // belongs not here
 			if (currentTime > (oldTime + 10000000)) { // 1/100 sec
-			
-			getA();
-			
-			player.update(a,b,this);
 
-			for (int w = 0; w < enemies.size(); w++) {
-				Enemy enim = (Enemy) enemies.get(w);
-				enim.update();
-				enemyHittest(enim);
-			}
+				// gets the array for the keys
+				getA();
 
-			for (int w = 0; w < bullets.size(); w++) {
-				Bullet bul = (Bullet) bullets.get(w);
-				bul.update();
-				bulletHittest(bul);
-			}
-
-			for (int i = 0; i < NUMKEYS; i++) {
-				a[i] = false;
+				// updates the player
+				player.update(a, b, this);
+				// goes through all enemies in the list
+				for (int w = 0; w < enemies.size(); w++) {
+					Enemy enim = (Enemy) enemies.get(w);
+					// updates object of enemies
+					enim.update();
+					// checks if the enemie hits something
+					enemyHittest(enim);
+				}
+				// goes through all bullets in the list
+				for (int w = 0; w < bullets.size(); w++) {
+					Bullet bul = (Bullet) bullets.get(w);
+					// updates object of bullet
+					bul.update();
+					// checks, if the bullet hits something
+					bulletHittest(bul);
+				}
+				//DEBUGGING KEY
+				if(a[7]==true){
+					player.setLife(0);
+				}
+				
+				for (int i = 0; i < NUMKEYS; i++) {
+					a[i] = false;
 
 				}
-			oldTime = currentTime;
+				
+				// checks, if the player has lifes left
+				// otherwise it removes the resets the game
+				if (player.getLife() <= 0) {
+					setMenu(new LooseMenu());
+					resetGame();
 
-			if (currentTime > (spawningTime + 3000000000L)) { // 3 sec
+				}
+				oldTime = currentTime;
 
-				spawnEnemies();
-				spawningTime = currentTime;
+				// if enough time has gone by, a new enemy is born
+				if (currentTime > (spawningTime + 3000000000L)) { // 3 sec
+
+					spawnEnemies();
+					spawningTime = currentTime;
+				}
+
+			}
+		} else {
+			// if there is a menu to serve, the menu is updated
+			if (currentTime > (oldTime + 100000000)) { // every 10th sec
+				menu.update(this, getA());
+
+				oldTime = currentTime;
 			}
 
 		}
-		}else{
-			if (currentTime > (oldTime + 100000000)) {	// every 10th sec
-				menu.update(this,getA());
-			
-				oldTime=currentTime;
+	}
+
+	// added reset-method, to reset game after the player has lost
+	private void resetGame() {
+		players.remove(player);
+		Image imgp1 = Toolkit.getDefaultToolkit().getImage(
+				getClass().getResource("img/player.png"));
+		player = new Player(50, 50, 50, 50, imgp1, 10, false);
+		players.add(player);
+
+		// clears the enemies list
+		if (!enemies.isEmpty()) {
+			for (int i = 0; i < enemies.size(); i++) {
+				enemies.remove(i);
 			}
-		
-
 		}
+		// clears the bullet list
+		if (!bullets.isEmpty()) {
+			for (int i = 0; i < bullets.size(); i++) {
+				bullets.remove(i);
+			}
 		}
+	}
 
+	// checks if an enemy hits the player
 	private void enemyHittest(Enemy enim) {
 		if (player.getRot().createTransformedShape(player.getRect())
 				.contains(enim.getPoint())) {
 
-			
+			player.setLife(player.getLife() - 1);
 			enemies.remove(enim);
 		}
-		
+
 	}
 
+	// checks if a bullet hits the player or the an enemy
 	private void bulletHittest(Bullet bullet) {
 		if (player.getRot().createTransformedShape(player.getRect())
 				.contains(bullet.getPoint())) {
 
-			System.out.println("Autsch, selfshot");
+			player.setLife(player.getLife() - 1);
 		}
 
 		for (int i = 0; i < enemies.size(); i++) {
 			Enemy enim = (Enemy) enemies.get(i);
 
 			if (enim.getRect().intersects(bullet.getRect())) {
-
-				enemies.remove(i);
+				//method to remove lifes, when hit
+				//the number of removed lifes is exactly the number of the bullet power
+				enim.setLife(enim.getLife()-bullet.getPower());
 				bullets.remove(bullet);
-
+	
+			}
+			//if lives equals zero, the enemy is removed
+			if(enim.getLife()==0){
+				enemies.remove(enim);
 			}
 
 		}
 
 	}
 
-
+	// method to spawn the enmies
 	private void spawnEnemies() {
-		Image imge1 =  Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/enemy.png"));
+		Image imge1 = Toolkit.getDefaultToolkit().getImage(
+				getClass().getResource("img/enemy.png"));
 		int x = 0;
 		int y = 0;
 		double o = Math.random();
+		// Determinate where to spawn the enemies with a random double
 		if (o < 0.25) {
 			x = (int) (Math.random() * WIDTH);
 			y = HEIGHT;
@@ -233,8 +294,8 @@ public class FightClub extends JPanel implements Runnable {
 			y = (int) (Math.random() * HEIGHT);
 			x = 0;
 		}
-		
-		Enemy enim = new Enemy(x, y, 30, 30, imge1, 1, true);
+		// makes a new enemy and adds them to the list
+		Enemy enim = new Enemy(x, y, 30, 30, imge1, 2, true);
 		enemies.add(enim);
 
 	}
@@ -251,8 +312,9 @@ public class FightClub extends JPanel implements Runnable {
 		FightClub.lasttime = lasttime;
 	}
 
+	// get the pressed keys and converts them into an array
 	public boolean[] getA() {
-		
+
 		if (inHandler.getKeys()[KeyEvent.VK_W]) {
 			a[0] = true;
 
@@ -284,23 +346,19 @@ public class FightClub extends JPanel implements Runnable {
 			a[4] = true;
 
 		}
-		if(inHandler.getKeys()[KeyEvent.VK_ENTER]){
-			a[5]=true;
+		if (inHandler.getKeys()[KeyEvent.VK_ENTER]) {
+			a[5] = true;
 		}
 
-		
-		if(inHandler.getKeys()[KeyEvent.VK_ESCAPE]){
-			a[6]=true;
+		if (inHandler.getKeys()[KeyEvent.VK_ESCAPE]) {
+			a[6] = true;
 		}
-		
+		if(inHandler.getKeys()[KeyEvent.VK_L]){
+			a[7]=true;
+		}
+
 		return a;
 	}
-	
-
-	
-	
-	
-	
 
 	public static Player getNearestPlayer() {
 		Player play = null;
@@ -311,7 +369,6 @@ public class FightClub extends JPanel implements Runnable {
 		return play;
 	}
 
-
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 
@@ -320,8 +377,6 @@ public class FightClub extends JPanel implements Runnable {
 	public void setA(boolean[] a) {
 		this.a = a;
 	}
-
-
 
 	// removed comments: also hinzugefügt
 }
