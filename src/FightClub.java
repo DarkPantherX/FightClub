@@ -295,7 +295,7 @@ public class FightClub extends JPanel implements Runnable {
 			x = 0;
 		}
 		// makes a new enemy and adds them to the list
-		Enemy enim = new Enemy(x, y, 30, 30, imge1, 2, true);
+		ShooterEnemy enim = new ShooterEnemy(x, y, 30, 30, imge1, 2, true);
 		enemies.add(enim);
 
 	}

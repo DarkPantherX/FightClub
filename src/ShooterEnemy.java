@@ -27,13 +27,15 @@ public class ShooterEnemy extends Enemy {
 			double dx = player.getX_Point() + 25 - (this.getX_Point() + 15);
 			double dy = player.getY_Point() + 25 - (this.getY_Point() + 15);
 
-			setX_Point(getX_Point() + dx
-					/ Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)) * vel
-					* FightClub.WIDTH / (double) 500); // "dx/gap*vel"
-			setY_Point(getY_Point() + dy
-					/ Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)) * vel
-					* FightClub.HEIGHT / (double) 500);
-
+			double dist = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)); // distance
+			double rad1 = (FightClub.HEIGHT + FightClub.WIDTH)/4; // Shooter Enemy does not come closer than rad1
+			
+			if (dist > rad1) {
+				setX_Point(getX_Point() + dx / dist * vel * FightClub.WIDTH
+						/ (double) 500);
+				setY_Point(getY_Point() + dy / dist * vel * FightClub.HEIGHT
+						/ (double) 500);
+			}
 			// Shoot
 			long currentTime = System.currentTimeMillis();
 			if (currentTime > oldTime + 5000) {
@@ -60,7 +62,7 @@ public class ShooterEnemy extends Enemy {
 	}
 
 	private double[] getDig(double[] d) { // Dear DP, i do not understand this
-						   
+
 		if (d[0] > 2 || d[1] > 2) {
 			d[0] = d[0] / 2;
 			d[1] = d[1] / 2;
