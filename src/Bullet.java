@@ -13,7 +13,18 @@ import java.awt.geom.AffineTransform;
 public class Bullet extends GameComponents implements Renderer{
 
 
-	
+	/* 17.03.2013
+	 * Dear DP
+	 * 1)
+	 * double grad is no new information as dirX and dirY are known.
+	 * actually its just always:
+	 * double grad=Math.tan(dirY/dirX);
+	 * 2)
+	 * i would recomend a velocity for the Bullets..
+	 * Now they are quite fast, if they were slower, one could try to get away from them..
+	 * 
+	 * 
+	 */
 
 	public double dirX;
 	public double dirY;
