@@ -23,10 +23,10 @@ public class ShooterEnemy extends Enemy {
 
 		} else {
 
-			// Movement
 			double dx = player.getX_Point() + 25 - (this.getX_Point() + 15);
 			double dy = player.getY_Point() + 25 - (this.getY_Point() + 15);
-
+			
+			// Movement
 			double dist = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)); // distance
 			double rad1 = (FightClub.HEIGHT + FightClub.WIDTH)/4; // Shooter Enemy does not come closer than rad1
 			
@@ -39,6 +39,7 @@ public class ShooterEnemy extends Enemy {
 			// Shoot
 			long currentTime = System.currentTimeMillis();
 			if (currentTime > oldTime + 5000) {
+				/* Dear DP, I do not understand this, so i created a new method for ShooterEnemy to shoot
 				double d[] = new double[2];
 				d[0] = player.getX_Point() + 25 - (getX_Point() + 15);
 				d[1] = player.getY_Point() + 25 - (getY_Point() + 15);
@@ -50,6 +51,10 @@ public class ShooterEnemy extends Enemy {
 				Bullet bul = new Bullet(10, 10, c[0], c[1],
 						(int) (getX_Point() - c[0]),
 						(int) (getY_Point() + c[1]), 0, 1);
+				FightClub.bullets.add(bul);
+				*/
+				
+				Bullet bul = new Bullet(10,10,dx,dy,(int)getX_Point(),(int)getY_Point(),Math.tan(dy/dx),1);
 				FightClub.bullets.add(bul);
 				oldTime = currentTime;
 
