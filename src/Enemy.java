@@ -45,12 +45,7 @@ public class Enemy extends Entity implements Renderer {
 
 	public void update() {
 		Player player = FightClub.getNearestPlayer();
-		//marked vely as unused
-		@SuppressWarnings("unused")
-		double vely = FightClub.HEIGHT / (double) 500;
-		//marked velx as unused
-		@SuppressWarnings("unused")
-		double velx = FightClub.WIDTH / (double) 500;
+		
 		double vel = 1;
 
 		if (!player.isVisible()) {
@@ -61,8 +56,8 @@ public class Enemy extends Entity implements Renderer {
 			double dx = player.getX_Point() + 25 - (this.getX_Point() + 15);
 			double dy = player.getY_Point() + 25 - (this.getY_Point() + 15);
 
-			this.setX_Point(getX_Point()+dx/Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2))*vel*FightClub.WIDTH/(double)500);
-			this.setY_Point(getY_Point()+dy/Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2))*vel*FightClub.HEIGHT/(double)500);
+			setX_Point(getX_Point()+dx/Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2))*vel*FightClub.WIDTH/(double)500); // "dx/gap*vel"
+			setY_Point(getY_Point()+dy/Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2))*vel*FightClub.HEIGHT/(double)500);
 			
 			rect = new Rectangle((int) getX_Point(), (int) getY_Point(), 30, 30);
 			point = new Point((int) (getX_Point() + (getWidth() / 2)),
