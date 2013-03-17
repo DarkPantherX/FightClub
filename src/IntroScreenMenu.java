@@ -25,10 +25,8 @@ public class IntroScreenMenu implements Menu {
 					.getClassLoader().getResource("font/narrow.ttf")
 					.openStream());
 		} catch (FontFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
