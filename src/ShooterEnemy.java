@@ -28,9 +28,11 @@ public class ShooterEnemy extends Enemy {
 			
 			// Movement
 			double dist = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)); // distance
-			double rad1 = (FightClub.HEIGHT + FightClub.WIDTH)/4; // Shooter Enemy does not come closer than rad1
+			double rad1 = (FightClub.HEIGHT + FightClub.WIDTH)/4; // Radius
 			
-			if (dist > rad1) {
+			
+		    // Enemy moves if it is outside the viewable field or if it is farther away than rad1 from the nearest player	
+			if (dist > rad1 || getX_Point()<0 || getX_Point()>FightClub.WIDTH-this.WIDTH || getY_Point()<0 || getY_Point()>FightClub.HEIGHT-this.WIDTH) { 
 				setX_Point(getX_Point() + dx / dist * vel * FightClub.WIDTH
 						/ (double) 500);
 				setY_Point(getY_Point() + dy / dist * vel * FightClub.HEIGHT
@@ -54,6 +56,7 @@ public class ShooterEnemy extends Enemy {
 				FightClub.bullets.add(bul);
 				*/
 				
+				// TODO the X-Point and Y-Point of Bullet has to be changed
 				Bullet bul = new Bullet(10,10,dx,dy,(int)getX_Point(),(int)getY_Point(),Math.tan(dy/dx),1);
 				FightClub.bullets.add(bul);
 				oldTime = currentTime;

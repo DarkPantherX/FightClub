@@ -8,6 +8,7 @@ public class Enemy extends Entity implements Renderer {
 
 	Rectangle rect;
 	Point point;
+	int WIDTH=30; // All Enemys are 30^2 pixel 
 
 	public Enemy(int x_Point, int y_Point, int width, int height, Image img,
 			int life, boolean visible) {
@@ -20,7 +21,7 @@ public class Enemy extends Entity implements Renderer {
 		this.setMaxLife(life);
 		this.setVisible(visible);
 
-		rect = new Rectangle((int) getX_Point(), (int) getY_Point(), 30, 30);
+		rect = new Rectangle((int) getX_Point(), (int) getY_Point(), WIDTH,WIDTH);
 	}
 
 	@Override
@@ -53,8 +54,8 @@ public class Enemy extends Entity implements Renderer {
 			// setX_Point(getX_Point() + 1);
 
 		} else {
-			double dx = player.getX_Point() + 25 - (this.getX_Point() + 15);
-			double dy = player.getY_Point() + 25 - (this.getY_Point() + 15);
+			double dx = player.getX_Point() + 25 - (this.getX_Point() + WIDTH/2);
+			double dy = player.getY_Point() + 25 - (this.getY_Point() + WIDTH/2);
 
 			double dist = Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2));
 			
