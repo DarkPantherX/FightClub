@@ -41,7 +41,10 @@ public class ShooterEnemy extends Enemy {
 			// Shoot
 			long currentTime = System.currentTimeMillis();
 			if (currentTime > oldTime + 5000) {
-				/* Dear DP, I do not understand this, so i created a new method for ShooterEnemy to shoot
+				/* 
+				 * Good, youre method is good, nearly to good, the player has almost no chance...
+				 * You can delete my method, it isn't usable anymore...
+				 * 
 				double d[] = new double[2];
 				d[0] = player.getX_Point() + 25 - (getX_Point() + 15);
 				d[1] = player.getY_Point() + 25 - (getY_Point() + 15);
@@ -69,15 +72,17 @@ public class ShooterEnemy extends Enemy {
 		}
 	}
 
-	private double[] getDig(double[] d) { // Dear DP, i do not understand this
-
-		if (d[0] > 2 || d[1] > 2) {
-			d[0] = d[0] / 2;
-			d[1] = d[1] / 2;
-			getDig(d);
-		}
-		return d;
-
-	}
+	
+	//SC, Method not needed, delete it if you want!
+//	private double[] getDig(double[] d) {  
+//
+//		if (d[0] > 2 || d[1] > 2) {
+//			d[0] = d[0] / 2;
+//			d[1] = d[1] / 2;
+//			getDig(d);
+//		}
+//		return d;
+//
+//	}
 
 }
