@@ -13,15 +13,11 @@ import java.awt.geom.AffineTransform;
 public class Bullet extends GameComponents implements Renderer{
 
 
-	/* 17.03.2013
-	 * Dear DP
-	 * 1)
-	 * double grad is no new information as dirX and dirY are known.
-	 * actually its just always:
-	 * double grad=Math.tan(dirY/dirX);
-	 * 2)
-	 * i would recomend a velocity for the Bullets..
-	 * Now they are quite fast, if they were slower, one could try to get away from them..
+	/* 17.03.2013 -2
+	 * 
+	 * SC, you're idea is good, i like it, and even more, i'd like to introduce a new class "weapon"
+	 * this will take care of the "speed" problem
+	 * But you can lower the speed of your enemies shot, so the player still has a chance
 	 * 
 	 * 
 	 */
