@@ -15,8 +15,7 @@ public class IntroScreenMenu implements Menu {
 	private Image intro;
 	private Image intro2;
 	private int count = 0;
-	private boolean [] a;
-
+	private boolean[] a;
 	
 	public IntroScreenMenu() {
 
@@ -78,13 +77,14 @@ public class IntroScreenMenu implements Menu {
 	public void update(FightClub fightclub, boolean[] a) {
 		long currentTime = System.currentTimeMillis();
 		this.a = a;
-		
+
 		if (i == 0) {
 			timeOld = currentTime;
 			i++;
 		}
 		
-		if (currentTime > timeOld + 5000 || a[5]) { // a[5] = ENTER
+		if (currentTime > timeOld + 5000 || a[5] ) { // a[5] = ENTER
+			a[5]=false;
 			fightclub.setMenu(new StartMenu());
 		}
 		if (currentTime > timeOld + 2750 && currentTime < timeOld + 3000) {
@@ -99,8 +99,9 @@ public class IntroScreenMenu implements Menu {
 		if (currentTime > timeOld + 3600) {
 			count = 0;
 		}
-		
 
 	}
+
+	
 
 }

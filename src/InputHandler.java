@@ -15,8 +15,6 @@ public class InputHandler implements KeyListener {
 		this.keys = keys;
 	}
 
-	
-	
 	//creates the KeyEvents and adds Keys to the boolean
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();

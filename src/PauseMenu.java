@@ -92,6 +92,9 @@ public class PauseMenu implements Menu {
 		if (a[5] && select == 1) { // a[5]=ENTER
 			fightclub.setMenu(null);
 		}
+		if(a[5] && select == 2){
+			fightclub.setMenu(new StartMenu());
+		}
 		
 		
 		if (!a[6] && pressing == 0 || a[6] && pressing == 1) { // a[6] = Esc

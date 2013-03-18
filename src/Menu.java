@@ -24,7 +24,7 @@ public interface Menu {
 	 * With "Links to"
 	 * > Retry // TODO
 	 * > Resume 
-	 * > Main menu // TODO
+	 * > Main menu
 	 * 
 	 * - LooseMenu.java
 	 * Displayed when live of player <= 0
