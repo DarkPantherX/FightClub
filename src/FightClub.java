@@ -34,7 +34,7 @@ public class FightClub extends JPanel implements Runnable {
 	private ComponentHandler compHandler;
 	private long currentTime;
 	private long oldTime = 0;
-	//private long lastTime = 0;
+	// private long lastTime = 0;
 	// private long timeBetweenFrames = 0;
 	private long spawningTime = 0;
 	private boolean a[] = new boolean[NUMKEYS];
@@ -50,7 +50,7 @@ public class FightClub extends JPanel implements Runnable {
 				getClass().getResource("img/player.png"));
 		// makes new player and adds it to the game
 		player = new Player(50, 50, 50, 50, imgp1, 10, false);
-		FireArm arm= FireArm.createGun();
+		FireArm arm = FireArm.createGun();
 		player.add(arm);
 		players.add(player);
 		// makes new listener (ComponentHandler and InputHandler) and add them
@@ -134,7 +134,7 @@ public class FightClub extends JPanel implements Runnable {
 			currentTime = System.nanoTime();
 			// timeBetweenFrames = 1000000000 / (currentTime - lastTime);
 			// System.out.println(timeBetweenFrames);
-			//lastTime = currentTime;
+			// lastTime = currentTime;
 			// System.out.println(1000/timeBetweenFrames);
 
 			update();
@@ -153,7 +153,7 @@ public class FightClub extends JPanel implements Runnable {
 	// origin of all updates in the game
 	public void update() {
 		if (menu == null) {
-			player.setVisible(true); // belongs not here
+			player.setVisible(true); // TODO belongs not here
 			if (currentTime > (oldTime + 10000000)) { // 1/100 sec
 
 				// gets the array for the keys
@@ -177,16 +177,16 @@ public class FightClub extends JPanel implements Runnable {
 					// checks, if the bullet hits something
 					bulletHittest(bul);
 				}
-				//DEBUGGING KEY
-				if(a[7]==true){
+				// DEBUGGING KEY
+				if (a[7] == true) {
 					player.setLife(0);
 				}
-				
+
 				for (int i = 0; i < NUMKEYS; i++) {
 					a[i] = false;
 
 				}
-				
+
 				// checks, if the player has lifes left
 				// otherwise it removes the resets the game
 				if (player.getLife() <= 0) {
@@ -204,6 +204,13 @@ public class FightClub extends JPanel implements Runnable {
 				}
 
 			}
+			
+			// Sets Pause, if Esc is pressed
+			if (a[6]) { // a[6] = Esc
+				setMenu(new PauseMenu());
+				
+			}
+
 		} else {
 			// if there is a menu to serve, the menu is updated
 			if (currentTime > (oldTime + 100000000)) { // every 10th sec
@@ -260,14 +267,15 @@ public class FightClub extends JPanel implements Runnable {
 			Enemy enim = (Enemy) enemies.get(i);
 
 			if (enim.getRect().intersects(bullet.getRect())) {
-				//method to remove lifes, when hit
-				//the number of removed lifes is exactly the number of the bullet power
-				enim.setLife(enim.getLife()-bullet.getPower());
+				// method to remove lifes, when hit
+				// the number of removed lifes is exactly the number of the
+				// bullet power
+				enim.setLife(enim.getLife() - bullet.getPower());
 				bullets.remove(bullet);
-	
+
 			}
-			//if lives equals zero, the enemy is removed
-			if(enim.getLife()==0){
+			// if lives equals zero, the enemy is removed
+			if (enim.getLife() == 0) {
 				enemies.remove(enim);
 			}
 
@@ -355,8 +363,8 @@ public class FightClub extends JPanel implements Runnable {
 		if (inHandler.getKeys()[KeyEvent.VK_ESCAPE]) {
 			a[6] = true;
 		}
-		if(inHandler.getKeys()[KeyEvent.VK_L]){
-			a[7]=true;
+		if (inHandler.getKeys()[KeyEvent.VK_L]) {
+			a[7] = true;
 		}
 
 		return a;

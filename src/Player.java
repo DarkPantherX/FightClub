@@ -99,9 +99,10 @@ public class Player extends Entity implements Renderer {
 		}
 
 		if (currentTime > oldTime + 500) {
-			if (a[6]) {
+			// WHY IS THIS CHECK IN PLAYER.UPDATE()
+			if (a[6]) { // a[6] = Esc
 				fightclub.setMenu(new PauseMenu());
-				aIsDone();
+				//aIsDone();
 				oldTime = currentTime;
 			}
 		}
