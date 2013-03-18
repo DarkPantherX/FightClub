@@ -50,6 +50,8 @@ public class FightClub extends JPanel implements Runnable {
 				getClass().getResource("img/player.png"));
 		// makes new player and adds it to the game
 		player = new Player(50, 50, 50, 50, imgp1, 10, false);
+		FireArm arm= FireArm.createGun();
+		player.add(arm);
 		players.add(player);
 		// makes new listener (ComponentHandler and InputHandler) and add them
 		// to the game
