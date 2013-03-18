@@ -23,7 +23,7 @@ public interface Menu {
 	 * Pause can be summoned with Esc during the Singleplayergame
 	 * With "Links to"
 	 * > Retry // TODO
-	 * > Resume // "Done" with repressing Esc
+	 * > Resume 
 	 * > Main menu // TODO
 	 * 
 	 * - LooseMenu.java
