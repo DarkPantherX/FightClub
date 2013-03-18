@@ -42,7 +42,7 @@ public class ShooterEnemy extends Enemy {
 			long currentTime = System.currentTimeMillis();
 			if (currentTime > oldTime + 5000) {
 				/* 
-				 * Good, youre method is good, nearly to good, the player has almost no chance...
+				 * Good, your method is good, nearly to good, the player has almost no chance...
 				 * You can delete my method, it isn't usable anymore...
 				 * 
 				double d[] = new double[2];
@@ -60,7 +60,7 @@ public class ShooterEnemy extends Enemy {
 				*/
 				
 				// TODO the X-Point and Y-Point of Bullet has to be changed
-				Bullet bul = new Bullet(10,10,dx,dy,(int)getX_Point(),(int)getY_Point(),Math.tan(dy/dx),1);
+				Bullet bul = new Bullet(10,10,dx,dy,(int)getX_Point(),(int)getY_Point(),Math.tan(dy/dx),1,2);
 				FightClub.bullets.add(bul);
 				oldTime = currentTime;
 
