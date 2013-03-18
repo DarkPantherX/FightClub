@@ -22,17 +22,12 @@ public class PauseMenu implements Menu {
 	public void update(FightClub fightclub, boolean[] a) {
 		this.fightclub = fightclub;
 		this.a = a;
-
+		
 		if (!a[6] && pressing == 0 || a[6] && pressing == 1) { // a[6] = Esc
 			pressing++;
-
 		} else if (!a[6] && pressing == 2) {// a[6] = Esc
-
 			fightclub.setMenu(null);
-			aIsDone();
 		}
-		System.out.println(pressing + " " + a[6]);
-		System.out.println();
 		aIsDone();
 	}
 
