@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 
 public class Player extends Entity implements Renderer {
 
@@ -14,6 +15,9 @@ public class Player extends Entity implements Renderer {
 	private long oldTime = 0;
 	private double grad;
 	private Bullet bullet;
+	private FireArm fireArm;
+	
+	public ArrayList<FireArm> arms = new ArrayList<FireArm>();
 
 	public Player(int x_Point, int y_Point, int width, int height, Image img,
 			int life, boolean visible) {
@@ -115,11 +119,13 @@ public class Player extends Entity implements Renderer {
 		if (a[4]) {
 			long time = System.currentTimeMillis();
 			if (FightClub.getLasttime() + 500 < time) {
+				if((fireArm.getAmmo()>0||fireArm.hasEternalAmmo())&&fireArm!=null){
 				FightClub.setLasttime(time);
-				bullet = new Bullet(10, 10, dirX, dirY, (int) i - 5,
-						(int) j - 5, grad, getPower());
+				bullet = new Bullet(fireArm.getBulletSizeX(), fireArm.getBulletSizeY(), dirX, dirY, (int) i - 5,
+						(int) j - 5, grad, fireArm.getPower(), fireArm.getSpeed());
 				// System.out.println("Works over here!" + bullet.getY_Point());
 				FightClub.getBullets().add(bullet);
+				}
 			}
 
 		}
@@ -129,11 +135,31 @@ public class Player extends Entity implements Renderer {
 		// System.out.println(dirX+" "+ dirY);
 	}
 
-	private int getPower() {
-		int power = 1;
-
-		return power;
+	
+	/**
+	 * @param fireArm
+	 */
+	
+	public void add(FireArm fia){
+		boolean alreadythere=false;
+		
+		for(int i=0; i<arms.size();i++){
+			FireArm fa = (FireArm) arms.get(i);
+			if(fia.getWeaponName().equals(fa.getWeaponName())){
+				fa.setAmmo(fa.getAmmo()+fia.getAmmo());
+				alreadythere=true;
+			}
+		}
+		
+		if(alreadythere==false){
+			arms.add(fia);
+			setFireArm(fia);
+		}
+		
+		
 	}
+	
+	
 
 	/**
 	 * @return the rect
@@ -197,6 +223,21 @@ public class Player extends Entity implements Renderer {
 	 */
 	public void setGrad(double grad) {
 		this.grad = grad;
+	}
+
+	/**
+	 * @return fireArm
+	 */
+	
+	public FireArm getFireArm() {
+		return fireArm;
+	}
+
+	/**
+	 * @param fireArm
+	 */
+	public void setFireArm(FireArm fireArm) {
+		this.fireArm = fireArm;
 	}
 
 }
