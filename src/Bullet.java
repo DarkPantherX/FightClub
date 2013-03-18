@@ -29,8 +29,9 @@ public class Bullet extends GameComponents implements Renderer{
 	private Image img=  Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/bullet.png"));
 	private Point point;
 	private Rectangle rect;
+	private double speed;
 	
-	public Bullet(int width, int height, double dirX, double dirY,int x_Point, int y_Point, double grad, int power){
+	public Bullet(int width, int height, double dirX, double dirY,int x_Point, int y_Point, double grad, int power, double speed){
 		this.setWidth(width);
 		this.setHeight(height);
 		this.setDirX(dirX);
@@ -39,7 +40,7 @@ public class Bullet extends GameComponents implements Renderer{
 		this.setY_Point(y_Point);
 		this.setGrad(grad);
 		this.setPower(power);
-		
+		this.setSpeed(speed);
 		
 		
 
@@ -66,8 +67,8 @@ public void render(Graphics2D g) {
 
 		public void update(){
 			
-			double velx=((FightClub.WIDTH/(double)500))*5;
-			double vely=((FightClub.HEIGHT/(double)500))*5;
+			double velx=((FightClub.WIDTH/(double)500))*getSpeed();
+			double vely=((FightClub.HEIGHT/(double)500))*getSpeed();
 
 			setX_Point(getX_Point()+((getDirX()/20)*velx));
 			setY_Point(getY_Point()+((getDirY()/20)*vely));
@@ -162,6 +163,24 @@ public void render(Graphics2D g) {
 
 	public int getPower() {
 		return power;
+	}
+
+
+
+	/**
+	 * @return the speed
+	 */
+	public double getSpeed() {
+		return speed;
+	}
+
+
+
+	/**
+	 * @param speed the speed to set
+	 */
+	public void setSpeed(double speed) {
+		this.speed = speed;
 	}
 
 	
