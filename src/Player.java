@@ -17,6 +17,9 @@ public class Player extends Entity implements Renderer {
 	private Bullet bullet;
 	private FireArm fireArm;
 	
+	private String message="";
+	private boolean newMessage=false;
+	
 	public ArrayList<FireArm> arms = new ArrayList<FireArm>();
 
 	public Player(int x_Point, int y_Point, int width, int height, Image img,
@@ -63,6 +66,11 @@ public class Player extends Entity implements Renderer {
 			g.fillRect((int) (getX_Point() - lifePiece + lifePiece * i),
 					(int) getY_Point(), (int) lifePiece, 7);
 
+		}
+		
+		if(newMessage){
+			g.drawString(message, (int)getX_Point(), (int)getY_Point()+15);
+			
 		}
 
 	}
