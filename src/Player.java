@@ -58,6 +58,8 @@ public class Player extends Entity implements Renderer {
 		// this draws the life, that has been lost
 		for (int i = getLife() + 1; i < getMaxLife() + 1; i++) {
 			g.setColor(Color.red);
+			g.drawRect((int) (getX_Point() - lifePiece + lifePiece * i),
+					(int) getY_Point(), (int) lifePiece, 7);
 			g.fillRect((int) (getX_Point() - lifePiece + lifePiece * i),
 					(int) getY_Point(), (int) lifePiece, 7);
 
