@@ -24,6 +24,8 @@ public class Enemy extends Entity implements Renderer {
 		rect = new Rectangle((int) getX_Point(), (int) getY_Point(), WIDTH,WIDTH);
 	}
 
+	
+	//the method for the size was already in here SC
 	@Override
 	public void render(Graphics2D g) {
 		g.drawImage(getImg(), (int) getX_Point(), (int) getY_Point(),
