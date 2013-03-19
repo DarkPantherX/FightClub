@@ -228,6 +228,8 @@ public class FightClub extends JPanel implements Runnable {
 		Image imgp1 = Toolkit.getDefaultToolkit().getImage(
 				getClass().getResource("img/player.png"));
 		player = new Player(50, 50, 50, 50, imgp1, 10, false);
+		FireArm arm = FireArm.createGun();
+		player.add(arm);
 		players.add(player);
 
 		// clears the enemies list
