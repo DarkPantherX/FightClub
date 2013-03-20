@@ -23,16 +23,21 @@ public class ShooterEnemy extends Enemy {
 
 		} else {
 
-			double dx = player.getX_Point() + 25 - (this.getX_Point() + 15);
-			double dy = player.getY_Point() + 25 - (this.getY_Point() + 15);
-			
+			double dx = player.getX_Point() + player.getWidth()
+					- (this.getX_Point() + this.getWidth() / 2);
+			double dy = player.getY_Point() + player.getHeight()
+					- (this.getY_Point() + this.getHeight() / 2);
+
 			// Movement
 			double dist = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)); // distance
-			double rad1 = (FightClub.HEIGHT + FightClub.WIDTH)/4; // Radius
-			
-			
-		    // Enemy moves if it is outside the viewable field or if it is farther away than rad1 from the nearest player	
-			if (dist > rad1 || getX_Point()<0 || getX_Point()>FightClub.WIDTH-this.getWidth() || getY_Point()<0 || getY_Point()>FightClub.HEIGHT-this.getHeight()) { 
+			double rad1 = (FightClub.HEIGHT + FightClub.WIDTH) / 4; // Radius
+
+			// Enemy moves if it is outside the viewable field or if it is
+			// farther away than rad1 from the nearest player
+			if (dist > rad1 || getX_Point() < 0
+					|| getX_Point() > FightClub.WIDTH - this.getWidth()
+					|| getY_Point() < 0
+					|| getY_Point() > FightClub.HEIGHT - this.getHeight()) {
 				setX_Point(getX_Point() + dx / dist * vel * FightClub.WIDTH
 						/ (double) 500);
 				setY_Point(getY_Point() + dy / dist * vel * FightClub.HEIGHT
@@ -41,19 +46,30 @@ public class ShooterEnemy extends Enemy {
 			// Shoot
 			long currentTime = System.currentTimeMillis();
 			if (currentTime > oldTime + 5000) {
-				
+
 				// TODO the X-Point and Y-Point of Bullet has to be changed
-				Bullet bul = new Bullet(10,10,dx,dy,(int)getX_Point(),(int)getY_Point(),Math.tan(dy/dx),1,2);
+				Bullet bul = new Bullet(
+						10,
+						10,
+						dx,
+						dy,
+						(int) (getX_Point() + Math.cos(Math.atan(dy / dx))
+								* Math.sqrt(this.getWidth() * this.getWidth()
+										+ this.getHeight() * this.getHeight())),
+						(int) (getY_Point() + Math.sin(Math.atan(dy / dx))
+								* Math.sqrt(this.getWidth() * this.getWidth()
+										+ this.getHeight() * this.getHeight())),
+						Math.atan(dy / dx), 1, 2);
 				FightClub.bullets.add(bul);
 				oldTime = currentTime;
 
 			}
 
-			rect = new Rectangle((int) getX_Point(), (int) getY_Point(), this.getWidth(), this.getHeight());
+			rect = new Rectangle((int) getX_Point(), (int) getY_Point(),
+					this.getWidth(), this.getHeight());
 			point = new Point((int) (getX_Point() + (getWidth() / 2)),
 					(int) (getY_Point() + (getHeight() / 2)));
 		}
 	}
-
 
 }

@@ -345,7 +345,7 @@ public class FightClub extends JPanel implements Runnable {
 		}
 
 		if (inHandler.getKeys()[KeyEvent.VK_UP]) {
-			b = b + 0.02;
+			b = b + 0.02; // TODO this has to be changed...
 
 		}
 
