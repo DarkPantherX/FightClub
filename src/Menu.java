@@ -16,7 +16,7 @@ public interface Menu {
 	 * Main menu with "Links to"
 	 * > Singleplayer
 	 * > Multiplayer // TODO longterm
-	 * > About // TODO AboutMenu.java
+	 * > About
 	 * > Quit // TODO
 	 * 
 	 * - PauseMenu.java:
@@ -36,10 +36,11 @@ public interface Menu {
 	 * TODO
 	 * - WinMenu.java
 	 * 
-	 * TODO
 	 * - AboutMenu.java
+	 * Shows those who worked in this Project // TODO
 	 * With "Link to"
-	 * > Main menu // TODO
+	 * > Main menu 
+	 * > Exit 
 	 * 
 	 */
 	

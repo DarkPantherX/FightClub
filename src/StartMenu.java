@@ -154,9 +154,14 @@ public class StartMenu implements Menu {
 		if (select >= options.length) {
 			select = 0;
 		}
-		if (a[5] && select == 0) { // a[5]=ENTER
+		if (a[5] && select == 0) { // a[5]=ENTER 
 			fightclub.setMenu(null);
 		}
+		if (a[5] && select == 2) { // a[5]=ENTER
+			fightclub.setMenu(new AboutMenu());;
+		}
+		
+		aIsDone();
 
 	}
 
