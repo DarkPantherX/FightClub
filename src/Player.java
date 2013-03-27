@@ -75,11 +75,11 @@ public class Player extends Entity implements Renderer {
 
 	}
 
-	public void update(boolean a[], double b, FightClub fightclub) {
+	public void update(boolean a[], FightClub fightclub) {
 		this.a = a;
 		this.fightclub = fightclub;
 		long currentTime = System.currentTimeMillis();
-
+		
 		double vel = 1; // 1 means 1/5 of the size of the field per second
 
 		int dx = 0; // can be 0, -1, 1 just for the direction
@@ -96,6 +96,13 @@ public class Player extends Entity implements Renderer {
 		if (a[3]) { // D
 			dx += 1;
 		}
+		if(a[8]){ // UP
+			grad+= 0.02;
+		}
+		if(a[9]){
+			grad-=0.02; // DOWN
+		}
+		
 		if (dx != 0 && dy != 0) { // diagonal
 			setX_Point(getX_Point() + dx / Math.sqrt(2) * vel * FightClub.WIDTH
 					/ (double) 500);
@@ -117,7 +124,6 @@ public class Player extends Entity implements Renderer {
 			}
 		}
 
-		grad = b;
 		double i = (getX_Point() + 25 - Math.cos(grad) * 25);
 		double j = (getY_Point() + 25 - Math.sin(grad) * 25);
 
@@ -127,7 +133,7 @@ public class Player extends Entity implements Renderer {
 		double dirX = (i - m);
 		double dirY = (j - n);
 
-		if (a[4]) {
+		if (a[4]) { // space
 			long time = System.currentTimeMillis();
 			if (FightClub.getLasttime() + 500 < time) {
 				if((fireArm.getAmmo()>0||fireArm.hasEternalAmmo())&&fireArm!=null){

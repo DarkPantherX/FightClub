@@ -17,7 +17,7 @@ public class FightClub extends JPanel implements Runnable {
 	// public static variables
 	private static final long serialVersionUID = 1L;
 	private static boolean paused = false;
-	public static final int NUMKEYS = 8;
+	public static final int NUMKEYS = 10;
 	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 	public static ArrayList<Player> players = new ArrayList<Player>();
 	public static ArrayList<Enemy> enemies = new ArrayList<Enemy>();
@@ -155,12 +155,12 @@ public class FightClub extends JPanel implements Runnable {
 		if (menu == null) {
 			player.setVisible(true); // TODO belongs not here
 			if (currentTime > (oldTime + 10000000)) { // 1/100 sec
-
+				
 				// gets the array for the keys
 				getA();
-
+				
 				// updates the player
-				player.update(a, b, this);
+				player.update(a,  this);
 				// goes through all enemies in the list
 				for (int w = 0; w < enemies.size(); w++) {
 					Enemy enim = (Enemy) enemies.get(w);
@@ -178,7 +178,7 @@ public class FightClub extends JPanel implements Runnable {
 					bulletHittest(bul);
 				}
 				// DEBUGGING KEY
-				if (a[7] == true) {
+				if (a[7] == true) { // L
 					player.setLife(0);
 				}
 
@@ -345,13 +345,11 @@ public class FightClub extends JPanel implements Runnable {
 		}
 
 		if (inHandler.getKeys()[KeyEvent.VK_UP]) {
-			b = b + 0.02; // TODO this has to be changed...
-
+			a[8] = true;
 		}
 
 		if (inHandler.getKeys()[KeyEvent.VK_DOWN]) {
-			b = b - 0.02;
-
+			a[9]=true;
 		}
 
 		if (inHandler.getKeys()[KeyEvent.VK_SPACE]) {
