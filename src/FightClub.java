@@ -22,8 +22,8 @@ public class FightClub extends JPanel implements Runnable {
 	public static ArrayList<Player> players = new ArrayList<Player>();
 	public static ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	public static double lasttime = 0;
-	public static int HEIGHT = 500;
-	public static int WIDTH = 500;
+	public static int HEIGHT = 480;
+	public static int WIDTH = 640;
 
 	// default non-static variables variables
 	Player player;
@@ -115,7 +115,7 @@ public class FightClub extends JPanel implements Runnable {
 	public static void main(String[] args) {
 		// opens new frame
 		JFrame frame = new JFrame();
-		frame.setSize(500, 500);
+		frame.setSize(WIDTH, HEIGHT);
 		// game paused false
 		paused = false;
 		// make a new JPanel (this FightClub class) and adds it to the frame
