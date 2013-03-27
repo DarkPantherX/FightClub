@@ -75,11 +75,11 @@ public class PauseMenu implements Menu {
 		this.a = a;
 
 
-		if (a[1]) { // S
+		if (a[1] || a[9]) { // a[1]=S,a[9]=DOWN
 			select++;
 			aIsDone();
 		}
-		if (a[0]) { // W
+		if (a[0] || a[8]) { // a[0]=W,a[8]=UP
 			select--;
 			aIsDone();
 		}

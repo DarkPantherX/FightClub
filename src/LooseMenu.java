@@ -137,11 +137,11 @@ public class LooseMenu implements Menu {
 		this.fightclub = fightclub;
 		this.a = a;
 
-		if (a[1]) {
+		if (a[1] || a[9]) { // a[1]=S,a[9]=DOWN
 			select++;
 			aIsDone();
 		}
-		if (a[0]) {
+		if (a[0] || a[8]) { // a[0]=W,a[8]=UP
 			select--;
 			aIsDone();
 		}
