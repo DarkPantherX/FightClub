@@ -7,7 +7,7 @@ import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.io.IOException;
 
-public class IntroScreenMenu implements Menu {
+public class IntroScreenMenu extends Menu {
 
 	private long timeOld;
 	private int i = 0;

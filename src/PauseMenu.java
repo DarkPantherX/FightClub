@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.awt.RenderingHints;
 import java.io.IOException;
 
-public class PauseMenu implements Menu {
+public class PauseMenu extends Menu {
 
 	private String[] options = { "Retry", "Resume [ESC]", "Main-Menu" };
 	private int select = 0;

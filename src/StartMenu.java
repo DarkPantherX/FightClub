@@ -8,7 +8,7 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class StartMenu implements Menu {
+public class StartMenu extends Menu {
 	private String[] options = { "Singleplayer", "Multiplayer", "About" };
 	private int select = 0;
 	private FightClub fightclub;

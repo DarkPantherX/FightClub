@@ -6,7 +6,7 @@ import java.awt.RenderingHints;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LooseMenu implements Menu {
+public class LooseMenu extends Menu {
 
 	private String[] options = { "Retry", "Main-Menu", "Quit" };
 	private int select = 0;

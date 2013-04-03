@@ -6,7 +6,7 @@ import java.awt.RenderingHints;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class AboutMenu implements Menu{
+public class AboutMenu extends Menu{
 
 	private String[] options = { "Return to Main Menu", "Exit"};
 	private int select = 0;
