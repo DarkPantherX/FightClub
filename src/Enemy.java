@@ -9,6 +9,10 @@ public class Enemy extends Entity implements Renderer {
 	Rectangle rect;
 	Point point;
 
+	// 
+	// extended by ShooterEnemy.java
+	// TODO: BOSS?
+	//
 
 	public Enemy(int x_Point, int y_Point, int width, int height, Image img,
 			int life, boolean visible) {

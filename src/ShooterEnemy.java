@@ -43,22 +43,19 @@ public class ShooterEnemy extends Enemy {
 				setY_Point(getY_Point() + dy / dist * vel * FightClub.HEIGHT
 						/ (double) 500);
 			}
+			
 			// Shoot
 			long currentTime = System.currentTimeMillis();
 			if (currentTime > oldTime + 5000) {
 
-				// TODO the X-Point and Y-Point of Bullet has to be changed
+				
 				Bullet bul = new Bullet(
 						10,
 						10,
 						dx,
 						dy,
-						(int) (getX_Point() + Math.cos(Math.atan(dy / dx))
-								* Math.sqrt(this.getWidth() * this.getWidth()
-										+ this.getHeight() * this.getHeight())),
-						(int) (getY_Point() + Math.sin(Math.atan(dy / dx))
-								* Math.sqrt(this.getWidth() * this.getWidth()
-										+ this.getHeight() * this.getHeight())),
+						(int) (getX_Point() + getWidth()/2+dx/dist*2*getWidth()),
+						(int) (getY_Point() + getHeight()/2+dy/dist*2*getHeight()),
 						Math.atan(dy / dx), 1, 2);
 				FightClub.bullets.add(bul);
 				oldTime = currentTime;
