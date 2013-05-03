@@ -16,6 +16,7 @@ public class Player extends Entity implements Renderer {
 	private double grad;
 	private Bullet bullet;
 	private FireArm fireArm;
+	public int score;
 	
 	private String message="";
 	private boolean newMessage=false;
@@ -37,6 +38,11 @@ public class Player extends Entity implements Renderer {
 
 	public void render(Graphics2D g) {
 
+		
+		g.setColor(Color.green);
+		g.drawString("Score: "+Integer.toString(score),30,30 );
+		
+		
 		rot.setToRotation(getGrad(), getX_Point() + getWidth() / 2,
 				getY_Point() + getHeight() / 2);
 		setRect(new Rectangle((int) getX_Point(), (int) getY_Point(),
@@ -49,6 +55,8 @@ public class Player extends Entity implements Renderer {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		g.drawImage(getImg(), (int) getX_Point(), (int) getY_Point(), null);
+		
+	
 
 		double lifePiece = getWidth() / getMaxLife();
 		// draws the life of the player
