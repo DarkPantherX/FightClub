@@ -75,6 +75,7 @@ public class FightClub extends JPanel implements Runnable {
 		// over draws the old image
 		g2.setColor(Color.black);
 		g2.fillRect(0, 0, WIDTH, HEIGHT);
+		
 
 		// if there is no menu to render it renders the game self
 		if (menu == null) {
@@ -84,6 +85,8 @@ public class FightClub extends JPanel implements Runnable {
 				enim.render(g2);
 			}
 
+
+			
 			// draws all bullets and checks if they are still in the frame
 			for (int w = 0; w < bullets.size(); w++) {
 				Bullet bul = (Bullet) bullets.get(w);
@@ -98,6 +101,11 @@ public class FightClub extends JPanel implements Runnable {
 			}
 			// draw the player
 			player.render(g2);
+			
+
+			
+			
+			
 		} else {
 			// if there is a menu, the menu is drawn, not the game itself
 			menu.render(g2);
@@ -231,6 +239,7 @@ public class FightClub extends JPanel implements Runnable {
 		FireArm arm = FireArm.createGun();
 		player.add(arm);
 		players.add(player);
+		player.score= 0;
 
 		// clears the enemies list
 		if (!enemies.isEmpty()) {
@@ -279,6 +288,7 @@ public class FightClub extends JPanel implements Runnable {
 			// if lives equals zero, the enemy is removed
 			if (enim.getLife() == 0) {
 				enemies.remove(enim);
+				player.score=player.score+10;
 			}
 
 		}
@@ -289,9 +299,12 @@ public class FightClub extends JPanel implements Runnable {
 	private void spawnEnemies() {
 		Image imge1 = Toolkit.getDefaultToolkit().getImage(
 				getClass().getResource("img/enemy.png"));
+		Image imge2 = Toolkit.getDefaultToolkit().getImage(
+				getClass().getResource("img/enemyking.png"));
 		int x = 0;
 		int y = 0;
 		double o = Math.random();
+		double d = Math.random();
 		// Determinate where to spawn the enemies with a random double
 		if (o < 0.25) {
 			x = (int) (Math.random() * WIDTH);
@@ -306,10 +319,17 @@ public class FightClub extends JPanel implements Runnable {
 			y = (int) (Math.random() * HEIGHT);
 			x = 0;
 		}
+		
+		
+		if(d<0.5){
 		// makes a new enemy and adds it to the list
 		ShooterEnemy enim = new ShooterEnemy(x, y, 30, 30, imge1, 2, true);
 		enemies.add(enim);
-
+		}else{
+			//add other enemie
+			Enemy enim = new Enemy(x, y, 30, 30, imge2, 3, true);
+			enemies.add(enim);
+		}
 	}
 
 	public static ArrayList<Bullet> getBullets() {
