@@ -39,8 +39,7 @@ public class Player extends Entity implements Renderer {
 	public void render(Graphics2D g) {
 
 		
-		g.setColor(Color.green);
-		g.drawString("Score: "+Integer.toString(score),30,30 );
+
 		
 		
 		rot.setToRotation(getGrad(), getX_Point() + getWidth() / 2,
@@ -80,7 +79,11 @@ public class Player extends Entity implements Renderer {
 			g.drawString(message, (int)getX_Point(), (int)getY_Point()+15);
 			
 		}
-
+		
+		g.setTransform(FightClub.oldTransform);
+		g.setColor(Color.green);
+		g.drawString("Score: "+Integer.toString(score),30,30 );
+		
 	}
 
 	public void update(boolean a[], FightClub fightclub) {
