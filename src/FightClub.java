@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -24,6 +25,7 @@ public class FightClub extends JPanel implements Runnable {
 	public static double lasttime = 0;
 	public static int HEIGHT = 480;
 	public static int WIDTH = 640;
+	public static AffineTransform oldTransform;
 
 	// default non-static variables variables
 	Player player;
@@ -76,7 +78,7 @@ public class FightClub extends JPanel implements Runnable {
 		g2.setColor(Color.black);
 		g2.fillRect(0, 0, WIDTH, HEIGHT);
 		
-
+		oldTransform = g2.getTransform();
 		// if there is no menu to render it renders the game self
 		if (menu == null) {
 			// draws all enemies
@@ -257,6 +259,8 @@ public class FightClub extends JPanel implements Runnable {
 
 	// checks if an enemy hits the player
 	private void enemyHittest(Enemy enim) {
+		
+		//System.out.println(enim.getPoint());
 		if (player.getRot().createTransformedShape(player.getRect())
 				.contains(enim.getPoint())) {
 
