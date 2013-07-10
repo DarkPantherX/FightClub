@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
+import java.net.URL;
 
 
 
@@ -33,6 +34,10 @@ public class Bullet extends GameComponents implements Renderer{
 		this.setGrad(grad);
 		this.setPower(power);
 		this.setSpeed(speed);
+		
+		URL url = FightClub.class.getResource("Sounds/shot.wav");
+		
+		SoundSystem.playSound(url);
 		
 		
 
