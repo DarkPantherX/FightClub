@@ -18,6 +18,7 @@ public class Player extends Entity implements Renderer {
 	private FireArm fireArm;
 	public int score;
 	
+	
 	private String message="";
 	private boolean newMessage=false;
 	
@@ -33,6 +34,7 @@ public class Player extends Entity implements Renderer {
 		this.setLife(life);
 		this.setMaxLife(life);
 		this.setVisible(visible);
+		this.setDisabled(false);
 
 	}
 
@@ -92,7 +94,9 @@ public class Player extends Entity implements Renderer {
 		long currentTime = System.currentTimeMillis();
 		
 		double vel = 1; // 1 means 1/5 of the size of the field per second
-
+		
+		if(!isDisabled()){
+		
 		int dx = 0; // can be 0, -1, 1 just for the direction
 		int dy = 0;
 		if (a[0]) { // W
@@ -126,14 +130,7 @@ public class Player extends Entity implements Renderer {
 			setX_Point(getX_Point() + dx * vel * FightClub.WIDTH / (double) 500);
 		}
 
-		if (currentTime > oldTime + 500) {
-			// WHY IS THIS CHECK IN PLAYER.UPDATE()
-			if (a[6]) { // a[6] = Esc
-				fightclub.setMenu(new PauseMenu());
-				//aIsDone();
-				oldTime = currentTime;
-			}
-		}
+
 
 		double i = (getX_Point() + 25 - Math.cos(grad) * 25);
 		double j = (getY_Point() + 25 - Math.sin(grad) * 25);
@@ -155,7 +152,16 @@ public class Player extends Entity implements Renderer {
 				FightClub.getBullets().add(bullet);
 				}
 			}
-
+		}
+	
+		if (currentTime > oldTime + 500) {
+			// WHY IS THIS CHECK IN PLAYER.UPDATE()
+			if (a[6]) { // a[6] = Esc
+				fightclub.setMenu(new PauseMenu());
+				//aIsDone();
+				oldTime = currentTime;
+			}
+		}
 		}
 
 		// System.out.println(i + " "+ j);
