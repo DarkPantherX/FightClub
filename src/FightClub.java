@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -39,6 +40,7 @@ public class FightClub extends JPanel implements Runnable {
 	// private long lastTime = 0;
 	// private long timeBetweenFrames = 0;
 	private long spawningTime = 0;
+	private long disabledTime=0;
 	private boolean a[] = new boolean[NUMKEYS];
 	private double b = 0;
 
@@ -212,9 +214,18 @@ public class FightClub extends JPanel implements Runnable {
 					spawnEnemies();
 					spawningTime = currentTime;
 				}
-
-			}
-			
+				
+				if(player.isDisabled()){
+					if(currentTime>(disabledTime+1000000000L)){
+						player.setDisabledTime(player.getDisabledTime()-1);
+						disabledTime=currentTime;
+					
+					}
+					if(player.getDisabledTime()==0){
+						player.setDisabled(false);
+						}
+					}
+				}
 			// Sets Pause, if Esc is pressed
 			if (a[6]) { // a[6] = Esc
 				setMenu(new PauseMenu());
@@ -263,12 +274,23 @@ public class FightClub extends JPanel implements Runnable {
 		//System.out.println(enim.getPoint());
 		if (player.getRot().createTransformedShape(player.getRect())
 				.contains(enim.getPoint())) {
-
+			
+			
+			if(enim instanceof StunnerEnemy){
+				player.setDisabled(true);
+				player.setDisabledTime(2);
+				enemies.remove(enim);				
+				
+			}else{
+			
 			player.setLife(player.getLife() - 1);
 			enemies.remove(enim);
+			
+			}
 		}
 
 	}
+	
 
 	// checks if a bullet hits the player or the an enemy
 	private void bulletHittest(Bullet bullet) {
@@ -276,6 +298,7 @@ public class FightClub extends JPanel implements Runnable {
 				.contains(bullet.getPoint())) {
 
 			player.setLife(player.getLife() - 1);
+			bullets.remove(bullet);
 		}
 
 		for (int i = 0; i < enemies.size(); i++) {
@@ -305,6 +328,8 @@ public class FightClub extends JPanel implements Runnable {
 				getClass().getResource("img/enemy.png"));
 		Image imge2 = Toolkit.getDefaultToolkit().getImage(
 				getClass().getResource("img/enemyking.png"));
+		Image imge3 = Toolkit.getDefaultToolkit().getImage(
+				getClass().getResource("img/stunner.png"));
 		int x = 0;
 		int y = 0;
 		double o = Math.random();
@@ -325,13 +350,23 @@ public class FightClub extends JPanel implements Runnable {
 		}
 		
 		
-		if(d<0.5){
+		//add spawing sound
+		URL url = FightClub.class.getResource("Sounds/spawn.wav");
+		
+		SoundSystem.playSound(url);
+		
+		
+		if(d<0.4){
 		// makes a new enemy and adds it to the list
 		ShooterEnemy enim = new ShooterEnemy(x, y, 30, 30, imge1, 2, true);
 		enemies.add(enim);
-		}else{
+		}else if(d<0.9){
 			//add other enemie
 			Enemy enim = new Enemy(x, y, 30, 30, imge2, 3, true);
+			enemies.add(enim);
+		}else{
+			
+			StunnerEnemy enim = new StunnerEnemy(x, y, 30, 30, imge3, 1, true);
 			enemies.add(enim);
 		}
 	}
