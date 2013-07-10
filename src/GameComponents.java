@@ -5,7 +5,9 @@ public class GameComponents {
 	private double y_Point;
 	private int width;
 	private int height;
+	private int disabledTime=0;
 	private boolean visible;
+	private boolean disabled;
 	
 	
 	
@@ -90,6 +92,42 @@ public class GameComponents {
 
 	public void setVisible(boolean visible) {
 		this.visible = visible;
+	}
+
+
+
+	/**
+	 * @return the diabled
+	 */
+	public boolean isDisabled() {
+		return disabled;
+	}
+
+
+
+	/**
+	 * @param diabled the diabled to set
+	 */
+	public void setDisabled(boolean diabled) {
+		this.disabled = diabled;
+	}
+
+
+
+	/**
+	 * @return the disabledTime
+	 */
+	public int getDisabledTime() {
+		return disabledTime;
+	}
+
+
+
+	/**
+	 * @param disabledTime the disabledTime to set
+	 */
+	public void setDisabledTime(int disabledTime) {
+		this.disabledTime = disabledTime;
 	}
 
 
