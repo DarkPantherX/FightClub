@@ -23,6 +23,7 @@ public class FightClub extends JPanel implements Runnable {
 	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 	public static ArrayList<Player> players = new ArrayList<Player>();
 	public static ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+	public static ArrayList<Message> messages = new ArrayList<Message>();
 	public static double lasttime = 0;
 	public static int HEIGHT = 480;
 	public static int WIDTH = 640;
@@ -41,6 +42,7 @@ public class FightClub extends JPanel implements Runnable {
 	// private long timeBetweenFrames = 0;
 	private long spawningTime = 0;
 	private long disabledTime=0;
+	private long messageTime=0;
 	private boolean a[] = new boolean[NUMKEYS];
 	private double b = 0;
 
@@ -103,10 +105,17 @@ public class FightClub extends JPanel implements Runnable {
 					bul.render(g2);
 				}
 			}
+			
+
 			// draw the player
 			player.render(g2);
 			
-
+			for(int w=0;w<messages.size();w++){
+				
+				Message mes = (Message) messages.get(w);
+				mes.render(g2);
+				
+			}
 			
 			
 			
@@ -231,7 +240,25 @@ public class FightClub extends JPanel implements Runnable {
 				setMenu(new PauseMenu());
 				
 			}
-
+			
+			if(currentTime > (messageTime+100000000)){
+				
+				for(int w=0;w<messages.size();w++){
+					Message mes = (Message) messages.get(w);
+					mes.update();
+					int count = mes.check();
+					
+					if(count ==0){
+						messages.remove(mes);
+					}
+					
+					messageTime = currentTime;
+				}
+				
+				
+			}
+			
+			
 		} else {
 			// if there is a menu to serve, the menu is updated
 			if (currentTime > (oldTime + 100000000)) { // every 10th sec
@@ -315,6 +342,7 @@ public class FightClub extends JPanel implements Runnable {
 			// if lives equals zero, the enemy is removed
 			if (enim.getLife() == 0) {
 				enemies.remove(enim);
+				messages.add(new Message("10+",(int)enim.getX_Point(),(int)enim.getY_Point(),2));
 				player.score=player.score+10;
 			}
 
