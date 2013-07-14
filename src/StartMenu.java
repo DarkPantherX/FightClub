@@ -63,7 +63,6 @@ public class StartMenu extends Menu {
 			g2.drawString(msg, FightClub.WIDTH / 2 - 130 + 4,
 					(50 * i + 250 + (FightClub.HEIGHT - 500)));
 
-			
 			// Enemies:
 			int ou = (int) (Math.random() * 4);
 			// System.out.println(ou);
@@ -154,13 +153,14 @@ public class StartMenu extends Menu {
 		if (select >= options.length) {
 			select = 0;
 		}
-		if (a[5] && select == 0) { // a[5]=ENTER 
-			fightclub.setMenu(null);
+		if (a[5] && select == 0) { // a[5]=ENTER
+			fightclub.startGame();
 		}
 		if (a[5] && select == 2) { // a[5]=ENTER
-			fightclub.setMenu(new AboutMenu());;
+			fightclub.setMenu(new AboutMenu());
+			;
 		}
-		
+
 		aIsDone();
 
 	}

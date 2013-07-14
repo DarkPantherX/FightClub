@@ -151,8 +151,8 @@ public class LooseMenu extends Menu {
 		if (select >= options.length) {
 			select = 0;
 		}
-		if (a[5] && select == 0) {
-			fightclub.setMenu(null);
+		if (a[5] && select == 0) { // a[5]=space
+			fightclub.startGame();
 		}
 		if (a[5] && select == 1) {
 			fightclub.setMenu(new StartMenu());
