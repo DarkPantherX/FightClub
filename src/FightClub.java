@@ -310,6 +310,7 @@ public class FightClub extends JPanel implements Runnable {
 				
 			}else{
 			
+				
 			player.setLife(player.getLife() - 1);
 			enemies.remove(enim);
 			
@@ -342,6 +343,12 @@ public class FightClub extends JPanel implements Runnable {
 			// if lives equals zero, the enemy is removed
 			if (enim.getLife() == 0) {
 				enemies.remove(enim);
+				
+				URL url = FightClub.class.getResource("Sounds/hit.wav");
+				
+				SoundSystem.playSound(url);
+				
+				
 				messages.add(new Message("10+",(int)enim.getX_Point(),(int)enim.getY_Point(),2));
 				player.score=player.score+10;
 			}
