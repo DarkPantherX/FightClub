@@ -23,9 +23,9 @@ public class ShooterEnemy extends Enemy {
 
 		} else {
 
-			double dx = player.getX_Point() + player.getWidth()
+			double dx = player.getX_Point() + player.getWidth()/2
 					- (this.getX_Point() + this.getWidth() / 2);
-			double dy = player.getY_Point() + player.getHeight()
+			double dy = player.getY_Point() + player.getHeight()/2
 					- (this.getY_Point() + this.getHeight() / 2);
 
 			// Movement

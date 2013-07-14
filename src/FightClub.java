@@ -53,7 +53,7 @@ public class FightClub extends JPanel implements Runnable {
 		Image imgp1 = Toolkit.getDefaultToolkit().getImage(
 				getClass().getResource("img/player.png"));
 		// makes new player and adds it to the game
-		player = new Player(50, 50, 50, 50, imgp1, 10, false);
+		player = new Player(WIDTH/2-25, HEIGHT/2-25, 50, 50, imgp1, 10, false);
 		FireArm arm = FireArm.createGun();
 		player.add(arm);
 		players.add(player);
@@ -360,7 +360,7 @@ public class FightClub extends JPanel implements Runnable {
 		// makes a new enemy and adds it to the list
 		ShooterEnemy enim = new ShooterEnemy(x, y, 30, 30, imge1, 2, true);
 		enemies.add(enim);
-		}else if(d<0.9){
+		}else if(d<0.5){
 			//add other enemie
 			Enemy enim = new Enemy(x, y, 30, 30, imge2, 3, true);
 			enemies.add(enim);
