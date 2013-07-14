@@ -43,9 +43,9 @@ public class Player extends Entity implements Renderer {
 		
 
 		
-		
+		/*
 		rot.setToRotation(getGrad(), getX_Point() + getWidth() / 2,
-				getY_Point() + getHeight() / 2);
+				getY_Point()  + getHeight() / 2);*/ // TODO: Multiple Affine transformations trans and rot.. delete the variable rot? - SC
 		setRect(new Rectangle((int) getX_Point(), (int) getY_Point(),
 				getWidth(), getHeight()));
 
