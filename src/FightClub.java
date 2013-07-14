@@ -207,20 +207,7 @@ public class FightClub extends JPanel implements Runnable {
 				if (player.getLife() <= 0) {
 					setMenu(new LooseMenu());
 
-					// remove things
-					players.remove(player);
-					// clears the enemies list
-					if (!enemies.isEmpty()) {
-						for (int i = 0; i < enemies.size(); i++) {
-							enemies.remove(i);
-						}
-					}
-					// clears the bullet list
-					if (!bullets.isEmpty()) {
-						for (int i = 0; i < bullets.size(); i++) {
-							bullets.remove(i);
-						}
-					}
+					endGame();
 
 				}
 				oldTime = currentTime;
@@ -290,6 +277,25 @@ public class FightClub extends JPanel implements Runnable {
 		player.score= 0;
 		
 		setMenu(null);
+	}
+	
+	public void endGame(){
+		
+		// remove things
+		players.remove(player);
+		// clears the enemies list
+		if (!enemies.isEmpty()) {
+			for (int i = 0; i < enemies.size(); i++) {
+				enemies.remove(i);
+			}
+		}
+		// clears the bullet list
+		if (!bullets.isEmpty()) {
+			for (int i = 0; i < bullets.size(); i++) {
+				bullets.remove(i);
+			}
+		}
+		
 	}
 
 	// checks if an enemy hits the player
