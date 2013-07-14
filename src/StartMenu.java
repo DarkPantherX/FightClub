@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class StartMenu extends Menu {
-	private String[] options = { "Singleplayer", "Multiplayer", "About" };
+	private String[] options = { "Singleplayer", "Options", "About" };
 	private int select = 0;
 	private FightClub fightclub;
 	private boolean[] a;
@@ -157,8 +157,11 @@ public class StartMenu extends Menu {
 		if (a[5] && select == 0) { // a[5]=ENTER 
 			fightclub.setMenu(null);
 		}
+		if (a[5] && select == 1) { // a[5]=ENTER 
+			fightclub.setMenu(new OptionsMenu());
+		}
 		if (a[5] && select == 2) { // a[5]=ENTER
-			fightclub.setMenu(new AboutMenu());;
+			fightclub.setMenu(new AboutMenu());
 		}
 		
 		aIsDone();
