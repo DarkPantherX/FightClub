@@ -1,32 +1,10 @@
-
 import java.awt.Graphics2D;
-import ch.ilikechickenwings.GraphicsObject.GListener;
-
 
 
 public class Menu {
-	
-	private GListener gListener;
-	
+
 	public void render(Graphics2D g2){}
 	public void update(FightClub fightclub, boolean[] a){}
-	
-	protected void addGListener(Menu menu) {
-		menu.setgListener(gListener);
-		
-	}
-	/**
-	 * @return the gListener
-	 */
-	public GListener getgListener() {
-		return gListener;
-	}
-	/**
-	 * @param gListener the gListener to set
-	 */
-	public void setgListener(GListener gListener) {
-		this.gListener = gListener;
-	}
 	
 	/*
 	 * Short overview of the menus:
