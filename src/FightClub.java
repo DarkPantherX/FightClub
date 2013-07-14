@@ -53,13 +53,7 @@ public class FightClub extends JPanel implements Runnable {
 	 */
 
 	public FightClub() {
-		Image imgp1 = Toolkit.getDefaultToolkit().getImage(
-				getClass().getResource("img/player.png"));
-		// makes new player and adds it to the game
-		player = new Player(WIDTH/2-25, HEIGHT/2-25, 50, 50, imgp1, 10, false);
-		FireArm arm = FireArm.createGun();
-		player.add(arm);
-		players.add(player);
+
 		// makes new listener (ComponentHandler and InputHandler) and add them
 		// to the game
 		inHandler = new InputHandler();
@@ -206,14 +200,14 @@ public class FightClub extends JPanel implements Runnable {
 
 				for (int i = 0; i < NUMKEYS; i++) {
 					a[i] = false;
-
 				}
 
 				// checks, if the player has lifes left
 				// otherwise it removes the resets the game
 				if (player.getLife() <= 0) {
 					setMenu(new LooseMenu());
-					resetGame();
+
+					endGame();
 
 				}
 				oldTime = currentTime;
@@ -272,16 +266,23 @@ public class FightClub extends JPanel implements Runnable {
 	}
 
 	// added reset-method, to reset game after the player has lost
-	private void resetGame() {
-		players.remove(player);
+	public void startGame() {
+		
 		Image imgp1 = Toolkit.getDefaultToolkit().getImage(
 				getClass().getResource("img/player.png"));
-		player = new Player(50, 50, 50, 50, imgp1, 10, false);
+		player = new Player(WIDTH/2-25, HEIGHT/2-25, 50, 50, imgp1, 10, false); 
 		FireArm arm = FireArm.createGun();
 		player.add(arm);
 		players.add(player);
 		player.score= 0;
-
+		
+		setMenu(null);
+	}
+	
+	public void endGame(){
+		
+		// remove things
+		players.remove(player);
 		// clears the enemies list
 		if (!enemies.isEmpty()) {
 			for (int i = 0; i < enemies.size(); i++) {
@@ -294,6 +295,7 @@ public class FightClub extends JPanel implements Runnable {
 				bullets.remove(i);
 			}
 		}
+		
 	}
 
 	// checks if an enemy hits the player

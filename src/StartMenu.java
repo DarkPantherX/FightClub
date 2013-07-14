@@ -63,7 +63,6 @@ public class StartMenu extends Menu {
 			g2.drawString(msg, FightClub.WIDTH / 2 - 130 + 4,
 					(50 * i + 250 + (FightClub.HEIGHT - 500)));
 
-			
 			// Enemies:
 			int ou = (int) (Math.random() * 4);
 			// System.out.println(ou);
@@ -132,7 +131,7 @@ public class StartMenu extends Menu {
 
 		g2.setFont(registerFont.deriveFont(12f));
 		g2.setColor(new Color(49, 83, 111));
-		g2.drawString("Copyright � by DarKCoder", 0, FightClub.HEIGHT - 20);
+		g2.drawString("Copyright ÔøΩ by DarKCoder", 0, FightClub.HEIGHT - 20);
 	}
 
 	@Override
@@ -158,7 +157,7 @@ public class StartMenu extends Menu {
 			fightclub.setMenu(null);
 		}
 		if (a[5] && select == 1) { // a[5]=ENTER 
-			fightclub.setMenu(new OptionsMenu());
+			fightclub.startGame();
 		}
 		if (a[5] && select == 2) { // a[5]=ENTER
 			fightclub.setMenu(new AboutMenu());

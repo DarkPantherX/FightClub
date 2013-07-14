@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class PauseMenu extends Menu {
 
-	private String[] options = { "Retry", "Resume [ESC]", "Main-Menu" };
+	private String[] options = { "Resume [ESC]", "Restart", "Main-Menu" };
 	private int select = 0;
 	private FightClub fightclub;
 	private boolean[] a;
@@ -89,10 +89,15 @@ public class PauseMenu extends Menu {
 		if (select >= options.length) {
 			select = 0;
 		}
-		if (a[5] && select == 1) { // a[5]=ENTER
+		if (a[5] && select == 0){
 			fightclub.setMenu(null);
 		}
+		if (a[5] && select == 1) { // a[5]=ENTER
+			fightclub.endGame();
+			fightclub.startGame();
+		}
 		if(a[5] && select == 2){
+			fightclub.endGame();
 			fightclub.setMenu(new StartMenu());
 		}
 		
@@ -101,6 +106,7 @@ public class PauseMenu extends Menu {
 			pressing++;
 		} else if (!a[6] && pressing == 2) {// a[6] = Esc
 			fightclub.setMenu(null);
+			pressing =0;
 		}
 		aIsDone();
 	}

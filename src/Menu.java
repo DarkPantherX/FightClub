@@ -44,8 +44,8 @@ public class Menu {
 	 * - PauseMenu.java:
 	 * Pause can be summoned with Esc during the Singleplayergame
 	 * With "Links to"
-	 * > Retry // TODO
 	 * > Resume 
+	 * > Restart
 	 * > Main menu
 	 * 
 	 * - LooseMenu.java
