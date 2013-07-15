@@ -1,3 +1,5 @@
+package ch.ilikechickenwings;
+
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
@@ -35,10 +37,11 @@ public class Bullet extends GameComponents implements Renderer{
 		this.setPower(power);
 		this.setSpeed(speed);
 		
+		if(!FightClub.mute){
 		URL url = FightClub.class.getResource("Sounds/shot.wav");
 		
 		SoundSystem.playSound(url);
-		
+		}
 		
 
 	}

@@ -1,9 +1,13 @@
+package ch.ilikechickenwings.Menu;
+
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.RenderingHints;
 import java.io.IOException;
+
+import ch.ilikechickenwings.FightClub;
 
 public class PauseMenu extends Menu {
 

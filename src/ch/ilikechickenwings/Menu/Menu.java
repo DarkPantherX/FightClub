@@ -1,5 +1,9 @@
+package ch.ilikechickenwings.Menu;
+
 
 import java.awt.Graphics2D;
+
+import ch.ilikechickenwings.FightClub;
 import ch.ilikechickenwings.GraphicsObject.GListener;
 
 
@@ -11,8 +15,8 @@ public class Menu {
 	public void render(Graphics2D g2){}
 	public void update(FightClub fightclub, boolean[] a){}
 	
-	protected void addGListener(Menu menu) {
-		menu.setgListener(gListener);
+	protected void addGListener() {
+		setgListener(gListener);
 		
 	}
 	/**

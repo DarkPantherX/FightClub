@@ -1,3 +1,5 @@
+package ch.ilikechickenwings.Menu;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -6,6 +8,8 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.io.IOException;
+
+import ch.ilikechickenwings.FightClub;
 
 public class IntroScreenMenu extends Menu {
 
@@ -30,9 +34,9 @@ public class IntroScreenMenu extends Menu {
 		}
 
 		intro = Toolkit.getDefaultToolkit().getImage(
-				(getClass().getResource("img/intro.png")));
+				(getClass().getResource("/ch/ilikechickenwings/img/intro.png")));
 		intro2 = Toolkit.getDefaultToolkit().getImage(
-				(getClass().getResource("img/intro2.png")));
+				(getClass().getResource("/ch/ilikechickenwings/img/intro2.png")));
 	}
 
 	@Override

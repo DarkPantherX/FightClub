@@ -1,3 +1,5 @@
+package ch.ilikechickenwings.Menu;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -6,6 +8,7 @@ import java.awt.RenderingHints;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import ch.ilikechickenwings.FightClub;
 import ch.ilikechickenwings.GraphicsObject.*;
 
 public class OptionsMenu extends Menu implements GListener{
@@ -19,11 +22,14 @@ public class OptionsMenu extends Menu implements GListener{
 
 
 	private GCheckbox gCheck;
-	private GSlider gSlide;
+	private GCheckbox gCheck2;
 	public static ArrayList<GObject> gObjects = new ArrayList<GObject>();
 
 	public OptionsMenu() {
 
+		gObjects.clear();
+		
+		
 		try {
 			registerFont = Font.createFont(Font.TRUETYPE_FONT, getClass()
 					.getClassLoader().getResource("font/bobcat.ttf")
@@ -34,11 +40,14 @@ public class OptionsMenu extends Menu implements GListener{
 			e.printStackTrace();
 		}
 		
-		addGListener(this);
+		setgListener(this);
 		
 		gCheck=new GCheckbox((FightClub.WIDTH / 2) - 60,
-				(FightClub.HEIGHT / 2) - 60, 120, 30, "Mute Game");
+				(FightClub.HEIGHT / 2) - 60, 120, 30, "Mute Game","check1",FightClub.mute);
+		gCheck2=new GCheckbox((FightClub.WIDTH / 2) - 60,
+				(FightClub.HEIGHT / 2)+50 - 60, 120, 30, "Mute Game","check2",false);
 		add(gCheck);
+		add(gCheck2);
 
 	}
 
@@ -68,7 +77,7 @@ public class OptionsMenu extends Menu implements GListener{
 			GObject obs = (GObject) gObjects.get(i);
 			
 			String msg =obs.getStr();
-
+			
 			if (i == select) {
 				obs.setSelected(true);
 				obs.switched();
@@ -80,7 +89,7 @@ public class OptionsMenu extends Menu implements GListener{
 			g2.setColor(new Color(55, 255, 0));
 			g2.setFont(registerFont.deriveFont(29f));
 			g2.drawString(msg, FightClub.WIDTH / 2 - 130,
-					(obs.getxCor()+30 + obs.getyCor()));
+					obs.getyCor());
 
 		}
 
@@ -92,7 +101,7 @@ public class OptionsMenu extends Menu implements GListener{
 		this.fightclub = fightclub;
 		this.a = a;
 
-
+		
 		if (a[1] || a[9]) { // a[1]=S,a[9]=DOWN
 			select++;
 			aIsDone();
@@ -102,15 +111,15 @@ public class OptionsMenu extends Menu implements GListener{
 			aIsDone();
 		}
 		if (select < 0) {
-			select = gObjects.size() - 1;
+			select = gObjects.size()-1;
 		}
 		if (select >= gObjects.size()) {
 			select = 0;
 		}
-		if (a[5] && select == 1) { // a[5]=ENTER
+		if (a[5] && select == 0) { // a[5]=ENTER
 			gCheck.clicked(this);
 		}
-		if(a[5] && select == 2){
+		if(a[5] && select == 1){
 			fightclub.setMenu(new StartMenu());
 		}
 		
@@ -118,7 +127,7 @@ public class OptionsMenu extends Menu implements GListener{
 		if (!a[6] && pressing == 0 || a[6] && pressing == 1) { // a[6] = Esc
 			pressing++;
 		} else if (!a[6] && pressing == 2) {// a[6] = Esc
-			fightclub.setMenu(null);
+			fightclub.setMenu(new StartMenu());
 		}
 		aIsDone();
 	}
@@ -140,7 +149,17 @@ public class OptionsMenu extends Menu implements GListener{
 
 	@Override
 	public void actionPerformed(GEvent ge) {
-		// TODO Auto-generated method stub
+		System.out.println("hier0");
+		if(ge.getSource().equals("check1")){
+			System.out.println("hier2");
+			if(ge.getState()){
+				FightClub.mute=true;
+				System.out.println("hier3");
+				
+			}else{
+				FightClub.mute=false;
+			}
+		}
 		
 	}
 

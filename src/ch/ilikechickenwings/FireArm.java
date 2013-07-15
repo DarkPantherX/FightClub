@@ -1,3 +1,5 @@
+package ch.ilikechickenwings;
+
 public class FireArm extends Weapon {
 
 	private double speed;

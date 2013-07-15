@@ -1,3 +1,5 @@
+package ch.ilikechickenwings.Menu;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -7,6 +9,9 @@ import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import ch.ilikechickenwings.FightClub;
+import ch.ilikechickenwings.IntroEnemy;
 
 public class StartMenu extends Menu {
 	private String[] options = { "Singleplayer", "Options", "About" };
@@ -21,7 +26,7 @@ public class StartMenu extends Menu {
 	public StartMenu() {
 
 		title = Toolkit.getDefaultToolkit().getImage(
-				getClass().getResource("img/Title.png"));
+				getClass().getResource("/ch/ilikechickenwings/img/Title.png"));
 		try {
 			registerFont = Font
 					.createFont(Font.TRUETYPE_FONT, getClass().getClassLoader()
@@ -154,10 +159,10 @@ public class StartMenu extends Menu {
 			select = 0;
 		}
 		if (a[5] && select == 0) { // a[5]=ENTER 
-			fightclub.setMenu(null);
+			fightclub.startGame();
 		}
 		if (a[5] && select == 1) { // a[5]=ENTER 
-			fightclub.startGame();
+			fightclub.setMenu(new OptionsMenu());
 		}
 		if (a[5] && select == 2) { // a[5]=ENTER
 			fightclub.setMenu(new AboutMenu());

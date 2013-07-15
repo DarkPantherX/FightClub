@@ -1,3 +1,5 @@
+package ch.ilikechickenwings;
+
 import java.net.URL;
 
 import javax.sound.sampled.AudioInputStream;

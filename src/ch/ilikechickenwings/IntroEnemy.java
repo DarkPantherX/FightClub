@@ -1,3 +1,5 @@
+package ch.ilikechickenwings;
+
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
 

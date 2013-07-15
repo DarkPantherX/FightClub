@@ -1,3 +1,5 @@
+package ch.ilikechickenwings.Menu;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -5,6 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import ch.ilikechickenwings.FightClub;
 
 public class AboutMenu extends Menu{
 

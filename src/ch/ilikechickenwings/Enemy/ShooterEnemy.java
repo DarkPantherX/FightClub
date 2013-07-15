@@ -1,6 +1,12 @@
+package ch.ilikechickenwings.Enemy;
+
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
+
+import ch.ilikechickenwings.Bullet;
+import ch.ilikechickenwings.FightClub;
+import ch.ilikechickenwings.Player;
 
 public class ShooterEnemy extends Enemy {
 

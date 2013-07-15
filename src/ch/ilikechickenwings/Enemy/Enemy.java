@@ -1,8 +1,15 @@
+package ch.ilikechickenwings.Enemy;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
+
+import ch.ilikechickenwings.Entity;
+import ch.ilikechickenwings.FightClub;
+import ch.ilikechickenwings.Player;
+import ch.ilikechickenwings.Renderer;
 
 public class Enemy extends Entity implements Renderer {
 

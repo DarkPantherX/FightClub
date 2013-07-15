@@ -1,4 +1,7 @@
+package ch.ilikechickenwings.Enemy;
+
 import java.awt.Image;
+
 
 
 public class StunnerEnemy extends Enemy{

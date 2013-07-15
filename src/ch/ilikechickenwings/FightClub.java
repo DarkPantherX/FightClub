@@ -1,3 +1,5 @@
+package ch.ilikechickenwings;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -9,6 +11,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import ch.ilikechickenwings.Enemy.Enemy;
+import ch.ilikechickenwings.Enemy.ShooterEnemy;
+import ch.ilikechickenwings.Enemy.StunnerEnemy;
+import ch.ilikechickenwings.Menu.IntroScreenMenu;
+import ch.ilikechickenwings.Menu.LooseMenu;
+import ch.ilikechickenwings.Menu.Menu;
+import ch.ilikechickenwings.Menu.PauseMenu;
 
 public class FightClub extends JPanel implements Runnable {
 
@@ -29,6 +39,7 @@ public class FightClub extends JPanel implements Runnable {
 	public static int HEIGHT = 480;
 	public static int WIDTH = 640;
 	public static AffineTransform oldTransform;
+	public static boolean mute;
 
 	// default non-static variables variables
 	Player player;
@@ -347,10 +358,11 @@ public class FightClub extends JPanel implements Runnable {
 			if (enim.getLife() == 0) {
 				enemies.remove(enim);
 				
+				if(!mute){
 				URL url = FightClub.class.getResource("Sounds/hit.wav");
 				
 				SoundSystem.playSound(url);
-				
+				}
 				
 				messages.add(new Message("10+",(int)enim.getX_Point(),(int)enim.getY_Point(),2));
 				player.score=player.score+10;
@@ -387,12 +399,12 @@ public class FightClub extends JPanel implements Runnable {
 			x = 0;
 		}
 		
-		
+		if(!mute){
 		//add spawing sound
 		URL url = FightClub.class.getResource("Sounds/spawn.wav");
 		
 		SoundSystem.playSound(url);
-		
+		}
 		
 		if(d<0.4){
 		// makes a new enemy and adds it to the list
