@@ -11,15 +11,17 @@ public class GObject {
 	private String str;
 	protected boolean selected=false;
 	private Image img;
+	private String name;
 	
 	
-	public GObject(int xCor, int yCor, int width, int height, String str){
+	
+	public GObject(int xCor, int yCor, int width, int height, String str,String name){
 		this.setxCor(xCor);
 		this.setyCor(yCor);
 		this.setWidth(width);
 		this.setHeight(height);
 		this.setStr(str);
-		
+		this.setName(name);
 	}
 
 
@@ -127,6 +129,22 @@ public class GObject {
 	}
 
 	public void switched() {}
+
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
 
 
 

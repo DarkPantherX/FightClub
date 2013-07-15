@@ -4,26 +4,28 @@ package ch.ilikechickenwings.GraphicsObject;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+import ch.ilikechickenwings.Menu.Menu;
+
 
 
 public class GCheckbox extends GObject {
 
 	
-	private boolean checked=false;
-
+	private boolean checked;
 
 	private Image check=Toolkit.getDefaultToolkit().getImage(
-			(getClass().getResource("img/checked.png")));
+			(getClass().getResource("/ch/ilikechickenwings/img/checked.png")));
 	private Image uncheck=Toolkit.getDefaultToolkit().getImage(
-			(getClass().getResource("img/unchecked.png")));
+			(getClass().getResource("/ch/ilikechickenwings/img/unchecked.png")));
 	private Image selcheck=Toolkit.getDefaultToolkit().getImage(
-			(getClass().getResource("img/selchecked.png")));
+			(getClass().getResource("/ch/ilikechickenwings/img/selchecked.png")));
 	private Image seluncheck=Toolkit.getDefaultToolkit().getImage(
-			(getClass().getResource("img/selunchecked.png")));
+			(getClass().getResource("/ch/ilikechickenwings/img/selunchecked.png")));
 	
 	
-	public GCheckbox(int xCor, int yCor, int width, int height, String str) {
-		super(xCor, yCor, width, height,str);
+	public GCheckbox(int xCor, int yCor, int width, int height, String str, String name, boolean state) {
+		super(xCor, yCor, width, height,str, name);
+		setChecked(state);
 		
 	}
 	
@@ -37,8 +39,7 @@ public class GCheckbox extends GObject {
 			}
 		}else{
 			if(checked){
-				setImg(check);
-				
+				setImg(check);				
 			}else{
 				setImg(uncheck);
 			}
@@ -47,12 +48,14 @@ public class GCheckbox extends GObject {
 	}
 	
 	
-	public void clicked(OptionsMenu optionsMenu){
+	public void clicked(Menu menu){
 		checked=!checked;
 		if(checked){
 			setImg(selcheck);
+			menu.getgListener().actionPerformed(new GEvent(getName(),checked));
 		}else{
 			setImg(seluncheck);
+			menu.getgListener().actionPerformed(new GEvent(getName(),checked));
 		}
 		
 	}
