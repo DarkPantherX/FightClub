@@ -56,7 +56,6 @@ public class FightClub extends JPanel implements Runnable {
 	private long disabledTime=0;
 	private long messageTime=0;
 	private boolean a[] = new boolean[NUMKEYS];
-	private double b = 0;
 
 	/**
 	 * @param args

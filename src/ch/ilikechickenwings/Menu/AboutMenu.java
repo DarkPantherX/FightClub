@@ -6,7 +6,6 @@ import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import ch.ilikechickenwings.FightClub;
 
