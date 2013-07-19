@@ -19,7 +19,7 @@ public class IntroScreenMenu extends Menu {
 	private Image intro;
 	private Image intro2;
 	private int count = 0;
-	private boolean[] a;
+
 	
 	public IntroScreenMenu() {
 
@@ -80,7 +80,6 @@ public class IntroScreenMenu extends Menu {
 	@Override
 	public void update(FightClub fightclub, boolean[] a) {
 		long currentTime = System.currentTimeMillis();
-		this.a = a;
 
 		if (i == 0) {
 			timeOld = currentTime;
