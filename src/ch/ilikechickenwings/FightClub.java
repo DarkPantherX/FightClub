@@ -35,6 +35,7 @@ public class FightClub extends JPanel implements Runnable {
 	public static ArrayList<Player> players = new ArrayList<Player>();
 	public static ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	public static ArrayList<Message> messages = new ArrayList<Message>();
+	public static ArrayList<Ability> abilites = new ArrayList<Ability>();
 	public static double lasttime = 0;
 	public static int HEIGHT = 480;
 	public static int WIDTH = 640;
@@ -496,5 +497,5 @@ public class FightClub extends JPanel implements Runnable {
 		this.a = a;
 	}
 
-	// removed comments: also hinzugefügt
+	// removed comments: also hinzugefï¿½gt
 }
