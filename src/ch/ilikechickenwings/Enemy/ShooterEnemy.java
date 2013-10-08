@@ -62,7 +62,7 @@ public class ShooterEnemy extends Enemy {
 						dy,
 						(int) (getX_Point() + getWidth()/2+dx/dist*2*getWidth()),
 						(int) (getY_Point() + getHeight()/2+dy/dist*2*getHeight()),
-						Math.atan(dy / dx), 1, 0.5);
+						Math.atan(dy / dx), 1, 0.2);
 				FightClub.bullets.add(bul);
 				oldTime = currentTime;
 
