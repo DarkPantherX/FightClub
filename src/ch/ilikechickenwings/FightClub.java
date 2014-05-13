@@ -47,7 +47,7 @@ public class FightClub extends JPanel implements Runnable {
 
 	// private non-static variables
 	private Menu menu;
-	private InputHandler inHandler;
+	public InputHandler inHandler;
 	private ComponentHandler compHandler;
 	private long currentTime;
 	private long oldTime = 0;

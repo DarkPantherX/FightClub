@@ -14,7 +14,7 @@ import ch.ilikechickenwings.FightClub;
 import ch.ilikechickenwings.IntroEnemy;
 
 public class StartMenu extends Menu {
-	private String[] options = { "Singleplayer", "Options", "About" };
+	private String[] options = { "Singleplayer", "Options", "About", "Multiplayer" };
 	private int select = 0;
 	private FightClub fightclub;
 	private boolean[] a;
@@ -166,6 +166,8 @@ public class StartMenu extends Menu {
 		}
 		if (a[5] && select == 2) { // a[5]=ENTER
 			fightclub.setMenu(new AboutMenu());
+		}if(a[5] && select == 3){
+			fightclub.setMenu(new MultiPlayerMenu());
 		}
 		
 		aIsDone();
